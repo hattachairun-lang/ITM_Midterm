@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MU-ITM Study Hub | EGIT503 Research Methodology & EGIT515 ITIL v5</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Sarabun', 'Inter', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .course-card-active-503 {
+      border: 3px solid #facc15 !important;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.5);
+    }
+    .course-card-active-515 {
+      border: 3px solid #facc15 !important;
+      background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.5);
+    }
+    .course-card-active-both {
+      border: 3px solid #facc15 !important;
+      background: linear-gradient(135deg, #065f46 0%, #059669 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- TOP CONFIRMATION BANNER -->
+  <div class="bg-emerald-600 text-white px-4 py-2 text-center text-xs sm:text-sm font-bold shadow-sm">
+    ✅ อัปเดตครบทั้ง 2 วิชาแล้ว! (📘 EGIT503 Research Methodology + 🟣 EGIT515 ITIL v5 Service Management • สรุปครบทุกบท + ข้อสอบรวม 100 ข้อ)
+  </div>
+
+  <!-- MAIN STICKY HEADER -->
+  <header id="topHeader" class="bg-slate-900 text-white shadow-xl border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-black text-xl shadow-md shrink-0">
+            MU
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950">
+                Mahidol ITM Study Hub
+              </span>
+              <span class="text-xs text-slate-300">ระบบติวสอบและคลังข้อสอบปริญญาโท สาขาการจัดการเทคโนโลยีสารสนเทศ</span>
+            </div>
+            <h1 id="headerCourseTitle" class="text-lg sm:text-2xl font-extrabold tracking-tight text-white mt-1">
+              เลือกวิชาที่ต้องการอ่านสรุปหรือฝึกทำข้อสอบด้านล่างได้เลยครับ 👇
+            </h1>
+          </div>
+        </div>
+
+        <!-- Search & Share -->
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1 sm:w-64">
+            <input
+              id="globalSearch"
+              type="text"
+              oninput="handleSearch(this.value)"
+              placeholder="🔍 ค้นหาคำศัพท์, ทฤษฎี, ข้อสอบ..."
+              class="w-full pl-3.5 pr-8 py-2 text-xs sm:text-sm rounded-xl bg-slate-800 text-white placeholder-slate-400 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
+            <button onclick="clearSearch()" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs font-bold">✕</button>
+          </div>
+          <button onclick="copyShareInfo()" class="px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm transition shrink-0 shadow">
+            🔗 แชร์ลิงก์
+          </button>
+        </div>
+      </div>
+
+      <!-- HUGE OBVIOUS COURSE SELECTOR CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <!-- Course 1 Card: EGIT503 -->
+        <button
+          id="card-503"
+          onclick="switchCourse('503')"
+          class="course-card-active-503 text-left p-4 rounded-2xl border-2 border-slate-700 bg-slate-800/90 hover:bg-slate-800 transition-all flex items-start gap-3.5"
+        >
+          <div class="text-3xl shrink-0">📘</div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold uppercase px-2 py-0.5 rounded bg-amber-400 text-slate-950">วิชาที่ 1 • EGIT 503</span>
+              <span class="text-[11px] font-bold opacity-90">50 ข้อสอบ + สูตร</span>
+            </div>
+            <div class="font-extrabold text-base sm:text-lg mt-1 truncate">Research Methodology</div>
+            <div class="text-xs opacity-90 truncate">วิทยาระเบียบวิธีวิจัย (ผศ.ดร.ยอด สุขะมงคล)</div>
+          </div>
+        </button>
+
+        <!-- Course 2 Card: EGIT515 -->
+        <button
+          id="card-515"
+          onclick="switchCourse('515')"
+          class="text-left p-4 rounded-2xl border-2 border-slate-700 bg-slate-800/90 hover:bg-slate-800 text-slate-200 transition-all flex items-start gap-3.5"
+        >
+          <div class="text-3xl shrink-0">🟣</div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold uppercase px-2 py-0.5 rounded bg-purple-300 text-purple-950">วิชาที่ 2 • EGIT 515</span>
+              <span class="text-[11px] font-bold opacity-90">50 ข้อสอบ + ITIL v5</span>
+            </div>
+            <div class="font-extrabold text-base sm:text-lg mt-1 truncate">ITIL v5 Service Management</div>
+            <div class="text-xs opacity-90 truncate">การจัดการบริการ IT (อ.มนัสศิริ จันทร์สุทธิรางกูร)</div>
+          </div>
+        </button>
+
+        <!-- Both Courses Card -->
+        <button
+          id="card-both"
+          onclick="switchCourse('both')"
+          class="text-left p-4 rounded-2xl border-2 border-slate-700 bg-slate-800/90 hover:bg-slate-800 text-slate-200 transition-all flex items-start gap-3.5"
+        >
+          <div class="text-3xl shrink-0">📚</div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-300 text-emerald-950">โหมดรวม 2 วิชา</span>
+              <span class="text-[11px] font-bold opacity-90">รวม 100 ข้อสอบ</span>
+            </div>
+            <div class="font-extrabold text-base sm:text-lg mt-1 truncate">ดูทั้ง 2 วิชาพร้อมกัน</div>
+            <div class="text-xs opacity-90 truncate">แสดงสรุปและข้อสอบทั้ง EGIT503 + EGIT515</div>
+          </div>
+        </button>
+      </div>
+
+      <!-- SECTION TABS -->
+      <nav class="flex items-center gap-2 mt-4 pt-3 border-t border-slate-800 overflow-x-auto no-scrollbar">
+        <button id="tab-notes" onclick="switchTab('notes')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition bg-amber-400 text-slate-950 shadow">
+          📖 1. อ่านสรุปเนื้อหาละเอียด (Thai Study Guide)
+        </button>
+        <button id="tab-quiz" onclick="switchTab('quiz')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition bg-slate-800 text-slate-200 hover:bg-slate-700">
+          📝 2. ฝึกทำข้อสอบปรนัย (50 / 100 English MCQs + เฉลยละเอียด)
+        </button>
+        <button id="tab-tools" onclick="switchTab('tools')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition bg-slate-800 text-slate-200 hover:bg-slate-700">
+          🧮 3. เครื่องคำนวณสูตร & วิเคราะห์ Abstract / ITIL Canvas
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Toast Notification -->
+  <div id="toastBox" class="hidden fixed bottom-5 right-5 z-50 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl border-2 border-amber-400 text-xs sm:text-sm font-bold">
+    <span id="toastText"></span>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full space-y-6">
+
+    <!-- ==================== TAB 1: THAI STUDY NOTES ==================== -->
+    <section id="section-notes" class="space-y-8">
+
+      <!-- EGIT503 STUDY NOTES BLOCK -->
+      <div id="notes-503" class="space-y-6">
+        <div class="bg-blue-950 text-white p-5 rounded-2xl shadow-md border-l-8 border-amber-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded bg-amber-400 text-slate-950">วิชาที่ 1 • EGIT 503</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold mt-1">📘 สรุปเนื้อหาวิชา EGIT503 Research Methodology (ครบทั้ง 6 บทเรียน)</h2>
+            <p class="text-xs sm:text-sm text-blue-200">ผู้สอน: ผศ.ดร.ยอด สุขะมงคล • สัดส่วนคะแนน: เข้าเรียน 15% | Quiz/การบ้าน 20% | งานในชั้นเรียน 15% | Midterm 20% | Proposal & Paper 30%</p>
+          </div>
+          <button onclick="switchCourse('503'); switchTab('quiz');" class="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm shrink-0 shadow">
+            ไปทำข้อสอบ EGIT503 (50 ข้อ) &rarr;
+          </button>
+        </div>
+
+        <!-- Lecture 1 -->
+        <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-blue-100 text-blue-900">Lecture 1</span>
+              <h3 class="text-lg sm:text-xl font-extrabold text-blue-950 mt-1">บทที่ 1: ความหมายของการวิจัย ประเภทงานวิจัย การเลือกหัวข้อ และแบบจำลอง</h3>
+            </div>
+            <span class="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-lg border border-amber-200">ออกสอบพื้นฐานทุกปี</span>
+          </div>
+
+          <div class="space-y-3 text-sm leading-relaxed">
+            <div class="p-4 rounded-xl bg-blue-50/70 border-l-4 border-blue-700">
+              <strong class="text-blue-950 block mb-1">1. นิยามของการวิจัย (What is Research?) & กระบวนการวิจัย</strong>
+              • <strong>Slesinger & Stephenson (1930):</strong> การจัดการกับสิ่งต่างๆ (Things) แนวคิด (Concepts) หรือสัญลักษณ์ (Symbols) เพื่อสรุปอ้างอิงไปสู่กฎเกณฑ์ทั่วไป (Generalizing) เพื่อขยาย (Extend) ปรับปรุงแก้ไข (Correct) หรือพิสูจน์ตรวจสอบ (Verify) ความรู้ ไม่ว่าจะช่วยสร้างทฤษฎีหรือปฏิบัติงานศิลป์<br/>
+              • <strong>สำนักงานราชบัณฑิตยสภา (แบ่งตาม 3 สาขาหลัก):</strong> (1) <strong>วิทยาศาสตร์</strong> ใช้วิธีวิจัยเชิงทดลองและการสังเกต (Experimental research) (2) <strong>สังคมศาสตร์</strong> ใช้วิธีวิจัยเชิงสำรวจ (Survey research: แบบสอบถาม/สัมภาษณ์) (3) <strong>มนุษยศาสตร์</strong> ใช้วิธีวิจัยเชิงเอกสาร (Documentary research)<br/>
+              • <strong>ลำดับ Research Process:</strong> <code>Issue</code> &rarr; <code>Research Questions</code> &rarr; <code>Theories & Research Review</code> &rarr; <code>Research Design</code> &rarr; <code>Data Collection</code> &rarr; <code>Data Analysis (Hypotheses Test)</code> &rarr; <code>Report</code> <em>(มีเส้นย้อนกลับจาก Data Analysis กลับไปแก้ไข Research Design ได้)</em>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block mb-1">2. ความแตกต่างระหว่าง Research Method vs. Research Methodology (จุดเน้นออกสอบ)</strong>
+              • <strong>Research Method (วิธีการวิจัย):</strong> วิธีการ เทคนิค หรือเครื่องมือทั้งหมดที่ใช้ในการเก็บและวิเคราะห์ข้อมูล (เช่น แบบสอบถาม, การสัมภาษณ์, การจำลอง Simulation)<br/>
+              • <strong>Research Methodology (ระเบียบวิธีวิจัย):</strong> แนวทางในการแก้ปัญหาการวิจัยอย่างเป็นระบบ เป็น "ศาสตร์" แห่งการศึกษาว่าจะทำวิจัยทางวิทยาศาสตร์อย่างไร (อธิบายเหตุผลและตรรกะว่าทำไมจึงเลือกใช้วิธีนั้นๆ)
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs sm:text-sm border-collapse border border-slate-200">
+                <thead class="bg-blue-950 text-white">
+                  <tr>
+                    <th class="p-2.5 border border-slate-300 text-left">เกณฑ์การแบ่ง 3 หลักเกณฑ์</th>
+                    <th class="p-2.5 border border-slate-300 text-left">ประเภทงานวิจัยย่อย</th>
+                    <th class="p-2.5 border border-slate-300 text-left">จุดสังเกตและตัวอย่างสำคัญ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-2.5 font-bold text-blue-900">1. แบ่งตามวิธีการ (Methods) & ข้อมูล</td>
+                    <td class="p-2.5">
+                      • <strong>Descriptive (พรรณนา):</strong> แบ่งย่อยเป็น <em>Survey, Case Study, Content Analysis</em><br/>
+                      • <strong>Analytical (วิเคราะห์):</strong> แบ่งย่อยเป็น <em>Historical, Philosophical, Review, Research synthesis (Meta-analysis)</em><br/>
+                      • <strong>Conceptual (แนวคิด):</strong> สร้างกรอบทฤษฎีนามธรรม เช่น <strong>TAM Model</strong><br/>
+                      • <strong>Quantitative vs. Qualitative vs. Mixed Methods</strong>
+                    </td>
+                    <td class="p-2.5">
+                      • <strong>Quantitative Data:</strong> แบ่งเป็น <strong>Discrete</strong> (นับจำนวนเต็ม เช่น ดื่มกาแฟ 4 แก้ว) และ <strong>Continuous</strong> (วัดค่าต่อเนื่อง เช่น กาแฟ 80 กรัม)<br/>
+                      • <strong>Qualitative Data:</strong> ใช้ประสาทสัมผัสทั้ง 5 สังเกตคุณลักษณะ/คำพูด (เช่น "ฉันดื่มกาแฟทุกวัน")
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-blue-900">2. แบ่งตามวัตถุประสงค์ (Purposes)</td>
+                    <td class="p-2.5">
+                      • <strong>Basic / Pure / Fundamental Research:</strong> มุ่งสร้างทฤษฎีพื้นฐานอธิบายปรากฏการณ์ทั่วไป<br/>
+                      • <strong>Applied / Development Research:</strong> มุ่งแก้ปัญหาเฉพาะหน้า (แบ่งเป็น <em>Evaluation, R&D, Action research</em>)
+                    </td>
+                    <td class="p-2.5">
+                      • ตัวอย่าง Basic: กฎการเคลื่อนที่ของนิวตัน (Principia Mathematica)<br/>
+                      • ตัวอย่าง Action/Applied: Marketing Research, การแก้ปัญหาเฉพาะหน้าในองค์กร
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-blue-900">3. แบ่งตามการทดลอง (Ability to Experiment)</td>
+                    <td class="p-2.5">
+                      • <strong>Non-experimental:</strong> Descriptive, Historical, Correlational, Qualitative<br/>
+                      • <strong>True Experimental:</strong> ทดสอบเหตุและผลแท้จริง มีการควบคุมสูง (High control) และสุ่มเข้ากลุ่ม<br/>
+                      • <strong>Quasi-Experimental (กึ่งทดลอง):</strong> ทดสอบเหตุและผลแต่ควบคุมหรือสุ่มสมบูรณ์ไม่ได้
+                    </td>
+                    <td class="p-2.5">
+                      • Code words ของ Correlational: <em>Relationship, Related to, Associated with, Predicts</em><br/>
+                      • Code words ของ Experimental: <em>Function of, Cause of, Comparison between, Effects of</em>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
+              <strong class="text-amber-950 block mb-1">3. การเลือกหัวข้อวิจัย (Topic Selection), Gartner Hype Cycle & แบบจำลอง (Models)</strong>
+              • <strong>Narrow & Deep</strong> (ดันพรมแดนความรู้ใหม่ น่าตื่นเต้น แต่โมเดลอาจนามธรรมเกินไป เช่น อัลกอริทึม CNN ใหม่) vs. <strong>Wide & Shallow</strong> (สมจริง ฝึกงานอุตสาหกรรมได้ดี แต่น่าเบื่อคล้ายรวมโปรเจกต์ ป.ตรี)<br/>
+              • <strong>Fundamental Topic</strong> (อายุยืนยาว ประยุกต์ได้กว้าง) vs. <strong>Applied Topic</strong> (แก้ปัญหาง่าย หางานง่าย แต่วิทยานิพนธ์ตายเร็ว/Die young เช่น 5G, IoT)<br/>
+              • <strong>Classical Topic</strong> (คุณภาพวิทย์สูง ผู้ประเมินเก่ง) vs. <strong>Hot Topic</strong> (ได้ Feedback ทันที ตีพิมพ์ง่าย ชุมชนคึกคัก แต่อายุสั้น)<br/>
+              • <strong>Gartner Hype Cycle 5 ระยะ:</strong> 1. Innovation Trigger &rarr; 2. Peak of Inflated Expectations &rarr; 3. Trough of Disillusionment &rarr; 4. Slope of Enlightenment &rarr; 5. Plateau of Productivity<br/>
+              • <strong>บทบาทนักวิจัย 3 ขั้นตอน:</strong> 1. Create & adjust models (Abstract away non-essential details) &rarr; 2. Solve model problems &rarr; 3. Evaluate hypotheses & solutions (มีทั้ง <strong>Physical Model</strong> และ <strong>Mathematical/Statistical Model</strong>)
+            </div>
+          </div>
+        </div>
+
+        <!-- Lecture 2 -->
+        <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-blue-100 text-blue-900">Lecture 2</span>
+              <h3 class="text-lg sm:text-xl font-extrabold text-blue-950 mt-1">บทที่ 2: ขอบเขตงานวิจัย TISM ฐานข้อมูลวิชาการ และการประเมินคุณภาพวารสาร</h3>
+            </div>
+            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-lg border border-blue-200">เน้น Databases, JCR IF, SJR, Q1–Q4</span>
+          </div>
+
+          <div class="space-y-3 text-sm leading-relaxed">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <strong class="text-blue-950 block mb-1">1. ขอบเขตงานวิจัย TISM & Research Processes</strong>
+                • <strong>TISM Core (จุดตัดระหว่าง IT + Management + Domain Expert):</strong> Knowledge Management (KM), Management Information Systems (MIS), Business Intelligence (BI), Decision Support Systems (DSS), OLAP, Digital Transformation, Data Management<br/>
+                • <strong>Kothari Flowchart:</strong> <strong>F (Feedback)</strong> = ช่วยควบคุมระบบย่อยที่ส่งข้อมูลกลับไป | <strong>FF (Feed Forward)</strong> = กำหนดเกณฑ์สำหรับการประเมินผลในขั้นตอนถัดไป<br/>
+                • <strong>ความต่าง 3 สายงาน:</strong> <strong>Social Science</strong> มีขั้น <em>Instrument/Tool Validation</em> คั่นก่อนเก็บข้อมูล | <strong>Engineering</strong> แยกเป็น <em>Math Model / Simulation / Implementation</em> | <strong>Data Science</strong> มี <em>Data Exploration &rarr; Preprocessing &rarr; Modeling</em>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <strong class="text-blue-950 block mb-1">2. Publisher vs. Database & กฎเหล็ก Fair Use</strong>
+                • <strong>Database (ฐานข้อมูล):</strong> ระบบรวบรวมบทความให้สืบค้น เช่น <strong>ScienceDirect, Scopus, Web of Science (WoS), PubMed (การแพทย์), SciFinder (เคมี), MathSciNet (คณิต), EDS</strong><br/>
+                • <strong>Publisher (สำนักพิมพ์):</strong> บริษัทผู้จัดพิมพ์ เช่น <strong>Elsevier</strong> (เจ้าของ ScienceDirect & Scopus), <strong>Springer, Wiley, MDPI</strong> ส่วน <strong>IEEE Xplore</strong> เป็นทั้ง Publisher และ Database<br/>
+                • <strong>Scopus vs. WoS:</strong> Scopus มีวารสารมากกว่า (~24,000+ ชื่อเรื่อง อัปเดตทุกวัน) ส่วน WoS (~12,000+ ชื่อเรื่อง อัปเดตรายสัปดาห์)<br/>
+                • <strong>Academic Fair Use:</strong> ห้ามใช้ Robot/Download Manager และห้ามโหลดทุกบทความทั้งเล่ม (Entire issue) เพราะสำนักพิมพ์จะบล็อก IP ทั้งมหาวิทยาลัย
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-indigo-50/70 border-l-4 border-indigo-600">
+              <strong class="text-indigo-950 block mb-1">3. การประเมินคุณภาพงานวิจัย (Peer Review, OA vs. Subscription, JCR IF, SJR, Quartile)</strong>
+              • <strong>Peer Review Process:</strong> ส่งบทความให้บรรณาธิการวารสาร (Editor) &rarr; ส่งให้ผู้เชี่ยวชาญในสาขาเดียวกัน (<strong>Peers จำนวน 3–5 ท่าน</strong>) ประเมิน &rarr; ตัดสินใจ (Accept, Revise, Reject)<br/>
+              • <strong>Subscription vs. Gold Open Access (OA):</strong> แบบ Subscription ผู้อ่าน/ห้องสมุดจ่ายเงิน (ติด Paywall) และผู้แต่งโอนลิขสิทธิ์ให้สำนักพิมพ์ ส่วนแบบ <strong>Gold Open Access</strong> สาธารณชนอ่านฟรีทันที ผู้แต่งถือลิขสิทธิ์เอง (Creative Commons) แต่ผู้แต่ง/ทุนวิจัยจ่ายค่าธรรมเนียมตีพิมพ์ (<strong>APC</strong>)<br/>
+              • <strong>Predatory Publishing (วารสารล่าเหยื่อ):</strong> เก็บค่าตีพิมพ์โดยไม่ทำ Peer Review จริง (ในอดีตดู <em>Beall's List</em> ปัจจุบันใช้หลัก <strong>Think. Check. Submit.</strong>)<br/>
+              • <strong>JCR Impact Factor (Clarivate / ฐาน WoS):</strong> จำนวนการอ้างอิงในปีปัจจุบัน ต่อบทความที่ตีพิมพ์ใน <strong>2 ปีก่อนหน้า</strong> สูตร: <code>IF = (C₁ + C₂) / (A₁ + A₂)</code><br/>
+              • <strong>SJR Indicator (Scimago / ฐาน Scopus):</strong> คิดจากช่วง <strong>3 ปีก่อนหน้า</strong> โดย<strong>ถ่วงน้ำหนักความมีชื่อเสียง (Prestige) ของวารสารที่อ้างอิงมาด้วย</strong><br/>
+              • <strong>Journal Quartile:</strong> <strong>Q1</strong> = Top 25% (สูงสุด), <strong>Q2</strong> = 25–50%, <strong>Q3</strong> = 50–75%, <strong>Q4</strong> = Bottom 25% (ส่วนของไทยใช้ <strong>TCI</strong> และระบบ <strong>ThaiJO</strong>)
+            </div>
+          </div>
+        </div>
+
+        <!-- Lecture 3 -->
+        <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-blue-100 text-blue-900">Lecture 3</span>
+              <h3 class="text-lg sm:text-xl font-extrabold text-blue-950 mt-1">บทที่ 3: การทบทวนวรรณกรรม ช่องว่างงานวิจัย 5 ประเภท ทฤษฎีสาย ITM และการอ้างอิง</h3>
+            </div>
+            <span class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-lg border border-purple-200">เน้น 5 Gaps & ทฤษฎี ITM 8 กลุ่ม</span>
+          </div>
+
+          <div class="space-y-3 text-sm leading-relaxed">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <strong class="text-blue-950 block mb-1">1. หลักการทำ Literature Review ที่ดี (Collect &rarr; Read &rarr; Write)</strong>
+                • <strong>สิ่งที่ต้องทำ (IS):</strong> สังเคราะห์และจัดกลุ่มตามประเด็นหรือแนวคิดเดียวกัน (<strong>Grouping the same idea</strong>) ค้นคว้าย้อนหลังไม่เกิน <strong>5–10 ปี</strong> และทำตารางเปรียบเทียบวรรณกรรม (แถวสุดท้ายคือ <em>"This Work"</em>)<br/>
+                • <strong>สิ่งที่ห้ามทำ (IS NOT):</strong> ห้ามเขียนสรุปเรียงทีละเปเปอร์แยกย่อหน้า (Paper-by-paper summary เช่น นาย A ปี 1964 ทำอะไร, นาย B ปี 1965 ทำอะไร) เพราะจะโดน Reject!
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <strong class="text-blue-950 block mb-1">2. ช่องว่างงานวิจัย 5 ประเภท (Five Types of Research Gaps)</strong>
+                1. <strong>Knowledge-based Gap:</strong> พบบ่อยสุด เมื่อยังมีความรู้ไม่เพียงพอในเรื่องใหม่นั้น<br/>
+                2. <strong>Relationship-based Gap:</strong> รู้จักตัวแปรแต่ละตัวดีแล้ว แต่ยังไม่แน่ใจในความสัมพันธ์ระหว่างกัน<br/>
+                3. <strong>Theory-based Gap:</strong> ทฤษฎียังไม่ถูกศึกษาหรือทดสอบในบริบทนั้น<br/>
+                4. <strong>Methodological Gap:</strong> ยังไม่เคยนำวิธีวิจัยหรือการออกแบบวิจัยนี้มาใช้กับปรากฏการณ์นั้น<br/>
+                5. <strong>Analytical Gap:</strong> ยังไม่เคยวิเคราะห์ด้วยแนวทางนั้น (เช่น Qual vs. Quant หรือเปรียบเทียบเทคนิค Fine-tuning ใหม่)
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-blue-50/60 border border-blue-200">
+              <strong class="text-blue-950 block mb-1">3. สรุปแผนที่ทฤษฎีสำคัญในสาย ITM 8 กลุ่ม (ออกสอบจับคู่สถานการณ์)</strong>
+              • <strong>กลุ่ม 1 การยอมรับและใช้เทคโนโลยี (Adoption):</strong> <strong>TAM</strong> (Perceived Usefulness & Ease of Use), <strong>UTAUT / UTAUT2</strong>, <strong>TPB</strong>, <strong>TRA</strong>, <strong>DOI</strong> (การแพร่กระจายนวัตกรรม), <strong>TRI</strong><br/>
+              • <strong>กลุ่ม 2 ความสำเร็จและคุณภาพระบบ (IS Success):</strong> <strong>DeLone & McLean IS Success Model</strong> (วัด 3 มิติ: <em>System Quality, Information Quality, Service Quality</em>)<br/>
+              • <strong>กลุ่ม 3 ความไว้วางใจ ความเสี่ยง ความเป็นส่วนตัว:</strong> <strong>Trust Theory</strong>, <strong>Perceived Risk</strong>, <strong>Privacy Calculus Theory</strong> (ชั่งน้ำหนักประโยชน์เทียบกับความเป็นส่วนตัวที่เสียไป), <strong>Protection Motivation Theory (PMT)</strong><br/>
+              • <strong>กลุ่ม 4 พฤติกรรมผู้บริโภคดิจิทัล:</strong> <strong>S-O-R Model</strong> (Stimulus-Organism-Response), <strong>ECT</strong> (Expectation-Confirmation), <strong>SERVQUAL</strong>, Customer Satisfaction & Loyalty<br/>
+              • <strong>กลุ่ม 5 การตัดสินใจระดับองค์กร:</strong> <strong>TOE Framework</strong> (Technology-Organization-Environment), <strong>Resource-Based View (RBV)</strong>, Institutional Theory, Socio-Technical Systems<br/>
+              • <strong>กลุ่ม 6 AI, Data Science & HCI:</strong> Decision Theory, Bayesian Theory, HCI, UX Theory, <strong>Cognitive Load Theory</strong> (ภาระทางสมอง), <strong>Flow Theory</strong>, Explainable AI (XAI)<br/>
+              • <strong>กลุ่ม 7 & 8 การพัฒนาและประเมินระบบ AI/Platform:</strong> <strong>MLOps</strong> (Registry, Monitoring, Automated Retraining นำขึ้น Production) และการประเมิน 7 มิติ เช่น <strong>Usability & UX</strong> วัดด้วย <strong>SUS / UEQ</strong>, <strong>System Performance</strong> วัดด้วย Latency / Throughput
+            </div>
+          </div>
+        </div>
+
+        <!-- Lecture 4, 5, 6 Combined Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <!-- Lecture 4 -->
+          <div class="searchable bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-900">Lecture 4</span>
+            <h3 class="text-base sm:text-lg font-extrabold text-slate-900">บทที่ 4: การพัฒนาหัวข้อ สมมติฐาน และการออกแบบการวิจัย</h3>
+            <div class="text-xs sm:text-sm space-y-2 leading-relaxed">
+              <p>• <strong>Practical Process:</strong> ทำ <code>Idea &harr; Literature Review</code> คู่กันไปมาก่อน แล้วจึงตั้ง <code>Research Question &rarr; Research Hypothesis</code></p>
+              <p>• <strong>สมมติฐาน (Hypotheses):</strong><br/>
+                - <strong>Null ($H_0$):</strong> ไม่ต่างกัน ($\mu_g = \mu_n$)<br/>
+                - <strong>Nondirectional ($H_1$):</strong> แตกต่างกัน ($\mu_g \neq \mu_n$)<br/>
+                - <strong>Directional ($H_1$):</strong> ระบุทิศทาง ($\mu_g > \mu_n$)
+              </p>
+              <p>• <strong>Exploratory vs. Descriptive Design:</strong><br/>
+                - <strong>Exploratory:</strong> ยืดหยุ่น (Flexible), สุ่มแบบไม่อาศัยความน่าจะเป็น (Purposive), เครื่องมือไม่มีโครงสร้างตายตัว<br/>
+                - <strong>Descriptive:</strong> เข้มงวด (Rigid เพื่อกัน Bias), สุ่มแบบอาศัยความน่าจะเป็น (Random), วางแผนสถิติและเครื่องมือไว้ล่วงหน้า
+              </p>
+              <p>• <strong>ตัวแปรในการทดลอง:</strong> <strong>Independent</strong> (ตัวแปรต้นที่จัดกระทำ), <strong>Dependent</strong> (ตัวแปรตามที่วัดผล), <strong>Extraneous</strong> (ตัวแปรแทรกซ้อนที่ไม่ได้ศึกษาแต่มีผล หากไม่ควบคุมจะเกิด <em>Confounded relationship</em>)</p>
+              <p>• <strong>3 Principles of Experimental Design:</strong> 1. <strong>Randomization</strong> (การสุ่ม) 2. <strong>Replication</strong> (การทำซ้ำ) 3. <strong>Local Control</strong> (การควบคุมในพื้นที่: <em>Blocking & Balancing</em>)</p>
+            </div>
+          </div>
+
+          <!-- Lecture 5 -->
+          <div class="searchable bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-amber-100 text-amber-900">Lecture 5</span>
+            <h3 class="text-base sm:text-lg font-extrabold text-slate-900">บทที่ 5: การเก็บข้อมูล ตรวจสอบเครื่องมือ สุ่มตัวอย่าง และมาตราวัด</h3>
+            <div class="text-xs sm:text-sm space-y-2 leading-relaxed">
+              <p>• <strong>การออกแบบแบบสอบถาม:</strong> ห้ามถาม 2 เรื่องในข้อเดียว (Double-barreled), ใช้ Funnel technique, 20–60 ข้อ (ไม่เกิน 15–20 นาที), มี 3–5 ข้อต่อ Subscale</p>
+              <p>• <strong>การตรวจสอบเครื่องมือ (Verification):</strong><br/>
+                - <strong>IOC (Content Validity):</strong> ผู้เชี่ยวชาญ 3–5 คน ให้คะแนน +1, 0, -1 เกณฑ์ผ่าน <strong>$\ge 0.50 - 0.60$</strong><br/>
+                - <strong>Cronbach's Alpha (Reliability):</strong> Try-out $\ge 30$ คน เกณฑ์ผ่าน <strong>$\alpha \ge 0.70$</strong><br/>
+                - <strong>Cohen's Kappa:</strong> วัดความสอดคล้องผู้สังเกต 2 คน ($\kappa \ge 0.60 - 0.80$)<br/>
+                - <strong>Delphi Technique:</strong> ผู้เชี่ยวชาญ 17–30 คน วัดฉันทามติด้วย <strong>$\text{IQR} \le 1.0 - 1.5$</strong> และ $\text{CV} \le 0.5$
+              </p>
+              <p>• <strong>การสุ่มตัวอย่าง (Sampling):</strong><br/>
+                - <strong>Probability:</strong> Simple Random, <strong>Stratified</strong> (ในกลุ่มเหมือนกัน ระหว่างกลุ่มต่างกัน), <strong>Systematic</strong> (เว้นระยะห่าง $k$), <strong>Cluster</strong> (แบ่งตามพื้นที่)<br/>
+                - <strong>Non-probability:</strong> Convenience, Judgment/Purposive, Quota, <strong>Snowball</strong> (บอกต่อ)
+              </p>
+              <p>• <strong>Central Limit Theorem (CLT):</strong> เมื่อ <strong>$n \ge 30$</strong> ค่าเฉลี่ยตัวอย่าง ($\bar{x}$) จะแจกแจงแบบปกติ โดยมี $\text{SD} = \sigma / \sqrt{n}$</p>
+              <p>• <strong>มาตราวัด 4 ระดับ:</strong> <strong>Nominal</strong> (Mode), <strong>Ordinal</strong> (Median), <strong>Interval</strong> (Mean, ไม่มีศูนย์แท้ เช่น °F), <strong>Ratio</strong> (มีศูนย์แท้ เช่น รายได้ อายุ น้ำหนัก) และ <strong>Stapel Scale</strong> (-5 ถึง +5 ไม่มีศูนย์)</p>
+            </div>
+          </div>
+
+          <!-- Lecture 6 -->
+          <div class="searchable bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-rose-100 text-rose-900">Lecture 6</span>
+            <h3 class="text-base sm:text-lg font-extrabold text-slate-900">บทที่ 6: โครงสร้าง Proposal, บทคัดย่อ (Abstract) และ MU-CIRB</h3>
+            <div class="text-xs sm:text-sm space-y-2 leading-relaxed">
+              <p>• <strong>Writing Process:</strong> ขั้น <code>Review &harr; Revise</code> เน้นแก้ที่ <strong>Content (เนื้อหา)</strong> ส่วนขั้น <code>Polish</code> เน้นแก้ที่ <strong>Wording and Format (คำและรูปแบบ)</strong></p>
+              <p>• <strong>MU Thesis Proposal (3 บท):</strong><br/>
+                - <strong>บทที่ 1 Introduction:</strong> Background/Problem, Motivation, Objectives (2–3 ข้อ), Scope, Expected Results<br/>
+                - <strong>บทที่ 2 Literature Review:</strong> Keywords, Related Theory, Related Works<br/>
+                - <strong>บทที่ 3 Methodology & Plan:</strong> Flow/Diagram, Proposed Framework, Details, Timeline
+              </p>
+              <p>• <strong>Abstract (150–300 คำ, 1 ย่อหน้าเดี่ยว):</strong><br/>
+                - <strong>Descriptive Abstract:</strong> เขียนก่อนงานเสร็จ (เน้นปัญหาและวิธีทำ)<br/>
+                - <strong>Informative Abstract:</strong> เขียนหลังงานเสร็จ (ครบ 5 ส่วนรวมผลลัพธ์และสรุป)<br/>
+                - <strong>ข้อห้ามใน Abstract:</strong> ห้ามใส่ References, รูปภาพ, ตาราง, สมการ หรือ Background ที่ยาวเกินไป<br/>
+                - <strong>Mood & Tone:</strong> Abstract เขียนดึงดูดใจให้อ่านต่อ ส่วน Conclusion สรุปข้อเท็จจริงที่พบ
+              </p>
+              <p>• <strong>ขั้นตอนขอจริยธรรมการวิจัยในคน (MU-CIRB):</strong><br/>
+                1. สอบออนไลน์ <strong>CITI Program</strong><br/>
+                2. เตรียม Proposal + <strong>Informed Consent Form</strong> + ทำ <strong>Self-Assessment</strong><br/>
+                3. ยื่นพิจารณาออนไลน์: <strong>Exemption Review</strong> (ความเสี่ยงต่ำมาก เช่น แบบสอบถามไม่ระบุตัวตน), <strong>Expedited Review</strong> (ความเสี่ยงปานกลาง), <strong>Full Board Review</strong> (ความเสี่ยงสูง)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== EGIT515 STUDY NOTES BLOCK ==================== -->
+      <div id="notes-515" class="space-y-6">
+        <div class="bg-purple-950 text-white p-5 rounded-2xl shadow-md border-l-8 border-amber-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded bg-amber-400 text-slate-950">วิชาที่ 2 • EGIT 515</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold mt-1">🟣 สรุปเนื้อหาวิชา EGIT515 ITSM based on ITIL Version 5 (ครบทั้ง Module 1–7 + Workshops)</h2>
+            <p class="text-xs sm:text-sm text-purple-200">ผู้สอน: อ.มนัสศิริ จันทร์สุทธิรางกูร (Manutsiri Chansutthirangkool) • สัดส่วนคะแนน: คะแนนเก็บ 30% | งานโปรเจกต์ 70%</p>
+          </div>
+          <button onclick="switchCourse('515'); switchTab('quiz');" class="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm shrink-0 shadow">
+            ไปทำข้อสอบ EGIT515 (50 ข้อ) &rarr;
+          </button>
+        </div>
+
+        <!-- Module 1 -->
+        <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-purple-100 text-purple-900">Module 1</span>
+              <h3 class="text-lg sm:text-xl font-extrabold text-purple-950 mt-1">Module 1: แนวคิดหลักของการจัดการผลิตภัณฑ์และบริการดิจิทัล (ITIL v5 Key Concepts)</h3>
+            </div>
+            <span class="text-xs font-bold text-purple-800 bg-purple-50 px-3 py-1 rounded-lg border border-purple-200">จุดเปลี่ยน ITIL 4 &rarr; ITIL 5</span>
+          </div>
+
+          <div class="space-y-3 text-sm leading-relaxed">
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs sm:text-sm border-collapse border border-slate-200">
+                <thead class="bg-purple-950 text-white">
+                  <tr>
+                    <th class="p-2.5 border border-slate-300 text-left">ประเด็นที่เปลี่ยนแปลง (Delta Matrix)</th>
+                    <th class="p-2.5 border border-slate-300 text-left">ITIL 4 (ยุค Industry 4.0)</th>
+                    <th class="p-2.5 border border-slate-300 text-left">ITIL Version 5 (ยุค Industry 5.0 & AI-Driven World)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">1. ขอบเขตหลัก (Scope)</td>
+                    <td class="p-2.5">เน้น ITSM & Digital Transformation</td>
+                    <td class="p-2.5">ขยายสู่ <strong>Digital Product and Service Management (DPSM)</strong> ตลอดทั้งวงจรชีวิต และเน้นสมดุล <strong>Profit, People, & the Planet</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">2. บทบาทสำคัญ (Key Roles)</td>
+                    <td class="p-2.5">Service Provider และ Service Consumer</td>
+                    <td class="p-2.5">เพิ่มบทบาทที่ 3 คือ <strong>Digital Product Vendor</strong> (ผู้สร้างและพัฒนาปรับปรุงผลิตภัณฑ์ดิจิทัล)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">3. คุณภาพบริการ (Service Quality)</td>
+                    <td class="p-2.5">3 เสาหลัก: Utility, Warranty, Experience</td>
+                    <td class="p-2.5">เพิ่มเสาหลักที่ 4 คือ <strong>Sustainability (ความยั่งยืน)</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">4. การกำกับดูแล (Governance)</td>
+                    <td class="p-2.5">Evaluate – Direct – Monitor (EDM)</td>
+                    <td class="p-2.5">เพิ่มกิจกรรมที่ 4 คือ <strong>Engage stakeholders</strong> (สอดคล้องกับ ISO/IEC 38500:2024)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">5. Four Dimensions & AI</td>
+                    <td class="p-2.5">4 มิติมาตรฐาน</td>
+                    <td class="p-2.5">เพิ่ม <strong>ITIL AI Capability Model</strong> เข้าไปในมิติ <em>Information and Technology</em> และมีโมดูล <strong>ITIL AI Governance</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">6. Value Chain & 34 Practices</td>
+                    <td class="p-2.5">6 กิจกรรม Value Chain / แบ่ง Practices เป็น 3 กลุ่ม</td>
+                    <td class="p-2.5">ใช้ <strong>8 กิจกรรมตาม Lifecycle</strong> (<em>Discover, Design, Acquire, Build, Transition, Operate, Deliver, Support</em>) และแบ่ง 34 Practices เป็น <strong>2 กลุ่ม (General 12 + Product & Service 22)</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-4 rounded-xl bg-purple-50 border-l-4 border-purple-700">
+              <strong class="text-purple-950 block mb-1">สายโซ่ Digital DNA Pipeline & นิยามคำศัพท์หลักที่ออกสอบตรงตัว</strong>
+              • <strong>สายโซ่ความสัมพันธ์:</strong> <code>Technology resources</code> &mdash;(compose)&rarr; <code>Digital products</code> &mdash;(enable and support)&rarr; <code>Service offerings</code> &mdash;(describe)&rarr; <code>Digital services</code><br/>
+              • <strong>Goods (สินค้า):</strong> ทรัพยากรที่จับต้องได้ (Tangible) ที่โอนย้ายพร้อมกรรมสิทธิ์ความเป็นเจ้าของ (Ownership)<br/>
+              • <strong>Product (ผลิตภัณฑ์):</strong> การจัดวางองค์ประกอบของทรัพยากรขององค์กร (Configuration of resources) เพื่อมอบคุณค่าให้ผู้บริโภค<br/>
+              • <strong>Digital Product:</strong> การผสมผสานทรัพยากรขององค์กรที่ตั้งอยู่บนพื้นฐานของเทคโนโลยีดิจิทัลเพื่อมอบคุณค่า <em>(สามารถรวมฮาร์ดแวร์ได้หากทำงานไม่ได้เมื่อขาดเทคโนโลยีดิจิทัล เช่น รถยนต์ไร้คนขับ สมาร์ตโฟน แล็ปท็อป)</em><br/>
+              • <strong>Service (บริการ):</strong> หนทางในการเอื้อให้เกิดการร่วมสร้างคุณค่า (Enabling value co-creation) โดยช่วยให้ลูกค้าบรรลุผลลัพธ์ (Outcomes) ที่ต้องการ โดยลูกค้าไม่ต้องจัดการต้นทุนและความเสี่ยงที่เฉพาะเจาะจงด้วยตนเอง<br/>
+              • <strong>Digital Service:</strong> บริการที่พึ่งพา Digital Products ทั้งหมดหรือเป็นส่วนใหญ่<br/>
+              • <strong>Service Offering (ข้อเสนอบริการ):</strong> คำอธิบายอย่างเป็นทางการของหนึ่งบริการหรือมากกว่า ประกอบด้วย 3 ส่วน:
+              1. <strong>Transfer of goods</strong> (โอนกรรมสิทธิ์สินค้า เช่น อุปกรณ์/วัสดุสิ้นเปลือง พบน้อยในบริการดิจิทัล)
+              2. <strong>Access to resources</strong> (ให้สิทธิ์เข้าใช้ทรัพยากรตามเงื่อนไข โดยผู้ให้บริการยังเป็นเจ้าของ เช่น แอปมือถือ, Cloud, รถเช่า, ห้องพักโรงแรม)
+              3. <strong>Service actions</strong> (กิจกรรมที่ผู้ให้บริการทำให้ลูกค้า เช่น การซัพพอร์ต การอบรม)
+            </div>
+
+            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+              <strong class="text-emerald-950 block mb-1">สมการคุณค่า (The Value Equation): Output vs. Outcome, Costs & Risks</strong>
+              • <strong>Output (ผลผลิต - The What):</strong> สิ่งส่งมอบจากกิจกรรม (เช่น ลูกค้าเดินทางไปถึงจุดหมายปลายทาง)<br/>
+              • <strong>Outcome (ผลลัพธ์ - The Why):</strong> ผลลัพธ์ที่เกิดกับผู้มีส่วนได้ส่วนเสียซึ่งเกิดจาก Output (เช่น สำหรับลูกค้า: เดินทางยืดหยุ่น สะดวก ราคาประหยัด / สำหรับเมือง: รถบนถนนน้อยลง อากาศสะอาดขึ้น)<br/>
+              • <strong>Costs Removed vs. Costs Imposed:</strong> ต้นทุนที่บริการช่วยตัดออกไป (เช่น ไม่ต้องซื้อรถยนต์ส่วนตัว) เทียบกับ ต้นทุนใหม่ที่เรียกเก็บจากการใช้บริการ (เช่น ค่าเช่ารถรายครั้ง)<br/>
+              • <strong>Risks Removed vs. Risks Imposed:</strong> ความเสี่ยงที่โอนให้ผู้ให้บริการดูแลแทน (เช่น ความปลอดภัยบนท้องถนนในรถไร้คนขับ) เทียบกับ ความเสี่ยงใหม่ที่เกิดขึ้นจากการใช้บริการ (เช่น ซอฟต์แวร์รวน หรือภัยไซเบอร์)<br/>
+              • <strong>กฎเหล็ก:</strong> บริการจะถูกรับรู้ว่ามีคุณค่าก็ต่อเมื่อ <strong>ผลด้านบวก (Positive outcomes + Costs removed + Risks removed) มีน้ำหนักมากกว่าผลด้านลบ (Positives outweigh the negatives)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-purple-100 text-purple-900">Module 2</span>
+              <h3 class="text-lg sm:text-xl font-extrabold text-purple-950 mt-1">Module 2: ความสัมพันธ์บริการ บทบาทผู้บริโภค Service Journey และ SLA 4 เสาหลัก</h3>
+            </div>
+            <span class="text-xs font-bold text-purple-800 bg-purple-50 px-3 py-1 rounded-lg border border-purple-200">ออกสอบเน้นตาราง 3 ความสัมพันธ์ & 4 SLA Metrics</span>
+          </div>
+
+          <div class="space-y-3 text-sm leading-relaxed">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="text-purple-950 block mb-1">1. บทบาทฝั่งผู้บริโภค 3 ตำแหน่ง (Service Consumer Roles)</strong>
+              • <strong>Sponsor (ผู้อนุมัติงบประมาณ / กระเป๋าตังค์):</strong> บทบาทที่ทำหน้าที่อนุมัติงบประมาณสำหรับการบริโภคบริการ (เช่น CFO ในองค์กร B2B)<br/>
+              • <strong>Customer (ลูกค้า / ผู้กำหนดความต้องการ):</strong> บทบาทที่กำหนดความต้องการ (Defines requirements) เจรจาสัญญา และ<strong>รับผิดชอบต่อผลลัพธ์ (Takes responsibility for outcomes)</strong> ของการบริโภคบริการ (เช่น CIO หรือฝ่ายจัดซื้อ)<br/>
+              • <strong>User (ผู้ใช้งานจริง):</strong> บทบาทที่เป็นผู้ใช้งานบริการจริงในชีวิตประจำวัน (เช่น พนักงานทุกคน) <em>*หมายเหตุ: ในธุรกิจ B2C เช่น ลูกค้าบุคคลที่เช่ารถขับเอง คนเดียวจะสวมทั้ง 3 บทบาทพร้อมกัน</em>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs sm:text-sm border-collapse border border-slate-200">
+                <thead class="bg-purple-950 text-white">
+                  <tr>
+                    <th class="p-2.5 border border-slate-300 text-left">มิติเปรียบเทียบ</th>
+                    <th class="p-2.5 border border-slate-300 text-left">1. Basic Relationship</th>
+                    <th class="p-2.5 border border-slate-300 text-left">2. Cooperative Relationship</th>
+                    <th class="p-2.5 border border-slate-300 text-left">3. Collaborative Relationship (Partnership)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">จุดเน้น (Typical Focus)</td>
+                    <td class="p-2.5">Support and efficiency (การสนับสนุนและประสิทธิภาพ)</td>
+                    <td class="p-2.5">Improvement and effectiveness (การปรับปรุงและประสิทธิผล)</td>
+                    <td class="p-2.5">Innovation and growth (นวัตกรรมและการเติบโต)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">ระดับที่เกี่ยวข้อง</td>
+                    <td class="p-2.5">Operational (ปฏิบัติการ)</td>
+                    <td class="p-2.5">Operational & Tactical (ปฏิบัติการและยุทธวิธี)</td>
+                    <td class="p-2.5">Operational, Tactical, & Strategic (ครบทุกระดับ)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">ประเภทบริการ & สัญญา</td>
+                    <td class="p-2.5">บริการสำเร็จรูปมาตรฐาน (COTS / Out-of-the-box) สัญญา SLA มาตรฐานตลาดทั่วไป</td>
+                    <td class="p-2.5">บริการที่ต้องปรับแต่ง/ตั้งค่า (Configured/Customized) ใช้ Advanced SLAs</td>
+                    <td class="p-2.5">บริการที่พัฒนาเฉพาะราย (Bespoke services) สัญญาอิงผลลัพธ์ร่วมกัน</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-purple-900">ตัวอย่างใน ITIL Car Rental</td>
+                    <td class="p-2.5">ผู้ให้บริการเครือข่ายสถานีชาร์จไฟ (Charging network)</td>
+                    <td class="p-2.5">บริษัทรับทำความสะอาดรถยนต์ (ประสานตารางงานกัน)</td>
+                    <td class="p-2.5">บริษัทผู้ผลิตรถยนต์ไร้คนขับ (ร่วมกันออกแบบและอัปเดตแอป)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-purple-50/70 border border-purple-200">
+                <strong class="text-purple-950 block mb-1">2. Service Journey (7 ขั้นตอน) & Band of Visibility</strong>
+                • <strong>Service Journey:</strong> ผลรวมของกิจกรรมและปฏิสัมพันธ์ทั้งหมดที่เกิดขึ้นตามกาลเวลา (What happens over time): <code>Explore</code> &rarr; <code>Engage</code> &rarr; <code>Offer</code> &rarr; <code>Agree</code> &rarr; <code>Onboard (Offboard)</code> &rarr; <code>Co-create</code> &rarr; <code>Reflect</code> (ไม่จำเป็นต้องเรียงลำดับตายตัวเสมอไป)<br/>
+                • <strong>Band of Visibility (ขอบเขตการมองเห็น):</strong> สิ่งที่ผู้บริโภคมองเห็นผู้ให้บริการ และผู้ให้บริการมองเห็นผู้บริโภค (What is seen) โดยแบบ Basic จะมีแถบการมองเห็นแคบ ส่วนแบบ Partnership จะกว้างมาก
+              </div>
+              <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
+                <strong class="text-amber-950 block mb-1">3. 4 เสาหลักของ Service Quality & SLA Metrics</strong>
+                <code>Service Value = Utility + Warranty + Sustainability + Experience</code><br/>
+                1. <strong>Utility (Fit for purpose - ตรรกะ OR):</strong> ฟังก์ชันการทำงาน ("What the service does") ต้องช่วยสนับสนุน Performance <strong>หรือ</strong> ขจัดข้อจำกัด (Constraints removed)<br/>
+                2. <strong>Warranty (Fit for use - ตรรกะ AND):</strong> การรับประกัน ("How the service performs") ต้องครบทั้ง <strong>Availability AND Capacity AND Continuity AND Security</strong><br/>
+                3. <strong>Sustainability (ตรรกะ AND):</strong> ดูแลสิ่งแวดล้อม (Environmental) AND ความก้าวหน้าทางสังคม (Social) AND เศรษฐกิจ (Economic)<br/>
+                4. <strong>Experience:</strong> <strong>UX</strong> (User รับรู้ขณะใช้งานผลิตภัณฑ์ ทั้ง Functional & Emotional) vs. <strong>CX</strong> (Customer รับรู้ต่อระบบการจัดการของผู้ให้บริการตลอด Journey)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 3, 4, 5 Combined -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Module 3 & 4 -->
+          <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-purple-100 text-purple-900">Module 3 & Module 4</span>
+            <h3 class="text-lg font-extrabold text-purple-950">Module 3 & 4: ITIL Value System (ITIL VS) & Governance 4 Patterns</h3>
+            <div class="text-xs sm:text-sm space-y-2.5 leading-relaxed">
+              <p>• <strong>ทำไมต้องมี Management System (ITIL VS)?</strong> เพราะการมีแค่ขีดความสามารถ (Capabilities) หรือการได้ใบเซอร์มาตรฐาน (เช่น ISO) ไม่ได้การันตีว่าจะสร้างผลลัพธ์ได้ตลอดไปในสภาพแวดล้อมที่เปลี่ยนตลอดเวลา</p>
+              <p>• <strong>โครงสร้าง ITIL Value System:</strong><br/>
+                - <strong>Inputs:</strong> <code>Opportunity (โอกาส)</code> และ <code>Demand (ความต้องการ)</code><br/>
+                - <strong>5 องค์ประกอบหลัก:</strong> 1. Guiding Principles, 2. Governance, 3. Value Chain, 4. Management Practices, 5. Continual Improvement<br/>
+                - <strong>Outcome:</strong> <code>Value (คุณค่า)</code>
+              </p>
+              <p>• <strong>Governing Body (The Who):</strong> คณะกรรมการบริหารที่มีความรับผิดชอบสูงสุด (Accountable at the highest level) ต่อผลการดำเนินงานและการปฏิบัติตามกฎระเบียบ (Performance & Compliance)</p>
+              <p>• <strong>4 กิจกรรมหลักของ Governance ใน ITIL 5:</strong><br/>
+                1. <strong>Engage stakeholders</strong> (เพิ่มใหม่ใน ITIL 5 ตาม ISO/IEC 38500:2024)<br/>
+                2. <strong>Evaluate</strong> (ประเมินสถานะ กลยุทธ์ พอร์ตโฟลิโอ)<br/>
+                3. <strong>Direct</strong> (กำหนดนโยบายและกลยุทธ์)<br/>
+                4. <strong>Monitor</strong> (ติดตามตรวจสอบผลการดำเนินงานและ Compliance)
+              </p>
+              <p>• <strong>The Four Governance Patterns (ออกสอบวิเคราะห์เคส):</strong><br/>
+                1. <strong>Directive (Centralized + Structured):</strong> สั่งการบนลงล่าง กฎเป๊ะ ทุกการตัดสินใจต้องขออนุมัติ เหมาะกับธนาคาร/งานที่มีกฎหมายควบคุมเข้มงวด (จุดอ่อน: <em>Initiative paralysis</em> งานเป็นอัมพาตเพราะรออนุมัติ)<br/>
+                2. <strong>Guided (Centralized + Emergent):</strong> ส่วนกลางกำหนดวิสัยทัศน์และเจตนารมณ์ (Commander's intent / Why ชัดเจน) แต่ให้อิสระหน้างานเลือกวิธีทำเอง (How ยืดหยุ่น เหมาะกับ Start-up)<br/>
+                3. <strong>Federated (Distributed + Structured):</strong> กระจายอำนาจให้หลายหน่วยธุรกิจ (BU / บริษัทในเครือ PLC) โดยมีตารางสิทธิ์ตัดสินใจ (Decision rights matrix) ร่วมกัน (จุดอ่อน: <em>Local optimization</em> แต่ละหน่วยเอาแต่ประโยชน์ฝ่ายตน)<br/>
+                4. <strong>Autonomous (Distributed + Emergent):</strong> ทีมจัดการตนเองอิสระ (Self-organizing teams) ขับเคลื่อนด้วยความเชี่ยวชาญและวัฒนธรรมร่วม (จุดอ่อน: พลาดจุดพึ่งพาสำคัญ <em>Critical dependencies missed</em>)
+              </p>
+            </div>
+          </div>
+
+          <!-- Module 5 -->
+          <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-purple-100 text-purple-900">Module 5</span>
+            <h3 class="text-lg font-extrabold text-purple-950">Module 5: หลักการชี้นำ 7 ประการ (The 7 ITIL Guiding Principles)</h3>
+            <div class="text-xs sm:text-sm space-y-2 leading-relaxed">
+              <p class="text-slate-600">เป็นคำแนะนำสากล (Universal recommendations) ที่ใช้ได้ในทุกสถานการณ์ ไม่ว่าจะใช้ Waterfall, Agile หรือ DevOps และทุกข้อมีความสำคัญเท่ากัน ต้องใช้ร่วมกัน:</p>
+              <p>1. <strong>Focus on value (มุ่งเน้นที่คุณค่า):</strong> ทุกกิจกรรมต้องเชื่อมโยงกลับไปที่คุณค่าสำหรับองค์กร ลูกค้า และผู้มีส่วนได้ส่วนเสีย ขั้นแรกคือต้องรู้ว่าใครคือ Service Consumer</p>
+              <p>2. <strong>Start where you are (เริ่มต้นจากจุดที่คุณอยู่):</strong> อย่ารื้อทิ้งสร้างใหม่ทั้งหมดโดยไม่ดูของเดิม ให้สังเกตงานจริงโดยตรง (ใช้คนที่ไม่มีความรู้เดิมมาช่วยสังเกตเพื่อลด Bias) และ<strong>ใช้การวัดผลเพื่อสนับสนุน ไม่ใช่แทนที่สิ่งที่สังเกตเห็นจริง</strong></p>
+              <p>3. <strong>Progress iteratively with feedback (พัฒนาเป็นรอบๆ พร้อมรับข้อมูลป้อนกลับ):</strong> แบ่งงานเป็นรอบย่อยที่จัดการได้ (Timeboxed) <em>"Comprehend the whole, but do something"</em> และ <em>"Fast does not mean incomplete"</em><br/>
+                • <strong>4 ประเภทของ Feedback:</strong> <em>Solicited + Structured</em> (แบบสำรวจออนไลน์), <em>Solicited + Unstructured</em> (สัมภาษณ์อิสระ), <em>Unsolicited + Unstructured</em> (ลูกค้าโทรแจ้งปัญหา/บ่นบนโซเชียล), <em>Unsolicited + Structured</em> (ผลสำรวจจากหน่วยงานคนกลาง)
+              </p>
+              <p>4. <strong>Collaborate and promote visibility (ทำงานร่วมกันและส่งเสริมการมองเห็น):</strong> ทลาย Silo ใช้ Kanban board/Dashboard ให้เห็นคอขวด และจำไว้ว่า <strong>"Collaboration does not mean consensus"</strong> (ไม่จำเป็นต้องเห็นพ้องต้องกันทุกคน)</p>
+              <p>5. <strong>Think and work holistically (คิดและทำงานแบบองค์รวม):</strong> บูรณาการครบทั้ง 4 มิติ (Four Dimensions), ตลอดวงจรชีวิต และวิเคราะห์ปัจจัยภายนอก <strong>PESTLE</strong></p>
+              <p>6. <strong>Keep it simple and practical (ทำให้เรียบง่ายและใช้งานได้จริง):</strong> ใช้ขั้นตอนให้น้อยที่สุด อะไรไม่เพิ่มคุณค่าให้ตัดทิ้ง อย่าสร้างโซลูชันรองรับทุกข้อยกเว้น (Exceptions) แต่ให้สร้างกฎเกณฑ์ (Rules) รับมือข้อยกเว้นแทน</p>
+              <p>7. <strong>Optimize and automate (ปรับให้เหมาะสมที่สุดและใช้ระบบอัตโนมัติ):</strong> กฎเหล็กคือ <strong>"Simplify and/or optimize BEFORE automating"</strong> ห้ามนำกระบวนการที่ยังยุ่งเหยิงไปทำ Automation ทันที</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 6 & Module 7 -->
+        <div class="searchable bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-purple-100 text-purple-900">Module 6 & Module 7</span>
+              <h3 class="text-lg sm:text-xl font-extrabold text-purple-950 mt-1">Module 6 & 7: ห่วงโซ่คุณค่า 8 กิจกรรม, 34 Practices และการทำ Value Stream Mapping</h3>
+            </div>
+            <span class="text-xs font-bold text-purple-800 bg-purple-50 px-3 py-1 rounded-lg border border-purple-200">บทใหญ่ที่สุด • ออกสอบจับคู่ 8 Activities & 5 Steps Mapping</span>
+          </div>
+
+          <div class="space-y-3 text-sm leading-relaxed">
+            <div class="p-3.5 rounded-xl bg-purple-50 border border-purple-200 text-xs sm:text-sm font-semibold text-purple-950">
+              🔗 ลำดับความเชื่อมโยง: <code>Organization's Purpose</code> (ทำอะไรเพื่อใครและทำไม) &mdash;(Defines)&rarr; <code>Operating Model(s)</code> &mdash;(Includes)&rarr; <code>Value Chain Activities (8 กิจกรรม)</code> &mdash;(Form)&rarr; <code>Core Value Streams</code> &mdash;(Depend on / Enable)&rarr; <code>34 Management Practices</code>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs sm:text-sm border-collapse border border-slate-200">
+                <thead class="bg-purple-950 text-white">
+                  <tr>
+                    <th class="p-2.5 border border-slate-300 text-left">8 กิจกรรม Value Chain</th>
+                    <th class="p-2.5 border border-slate-300 text-left">วัตถุประสงค์หลัก (Purpose)</th>
+                    <th class="p-2.5 border border-slate-300 text-left">ผลลัพธ์ (Outputs) & คำศัพท์สำคัญที่ออกสอบ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">1. Discover</td>
+                    <td class="p-2.5">ทำให้ Product Roadmaps และ Service Offerings สอดคล้องกับความต้องการของผู้บริโภคและกลยุทธ์องค์กรอย่างต่อเนื่อง</td>
+                    <td class="p-2.5">• <strong>Output:</strong> Updated product & service roadmap<br/>• ทำใน 3 ระดับ (Organization, Portfolio, Product) และวิเคราะห์ปัจจัย <strong>PESTLE</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">2. Design</td>
+                    <td class="p-2.5">สร้างต้นแบบ (Prototypes) และข้อกำหนดรายละเอียด (Specifications) ทั้งด้านฟังก์ชัน UX และกรอบปฏิบัติการ</td>
+                    <td class="p-2.5">• <strong>Specification</strong> (เอกสารระบุฟีเจอร์และเกณฑ์เทคนิค) vs. <strong>Prototype</strong> (รุ่นจำลองเบื้องต้นเพื่อทดสอบสมมติฐาน)<br/>• <strong>Human-Centred Design (HCD):</strong> เน้นความเข้าใจผู้ใช้ (Empathy) และการมีส่วนร่วม</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">3. Acquire</td>
+                    <td class="p-2.5">จัดหาและจัดสรรทรัพยากรที่จำเป็นอย่างมีประสิทธิภาพ เพื่อรับรองความยั่งยืนและขยายขนาดได้ (Scalability)</td>
+                    <td class="p-2.5">• <strong>Output:</strong> Acquired resources and services<br/>• <strong>CMDB (Configuration Management Database):</strong> ฐานข้อมูลจัดเก็บระเบียนโครงแบบและความสัมพันธ์ระหว่างรายการตลอดวงจรชีวิต</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">4. Build</td>
+                    <td class="p-2.5">พัฒนา รวมระบบ (Integrate) และทดสอบผลิตภัณฑ์ดิจิทัล เพื่อเปลี่ยนการออกแบบให้เป็นโซลูชันที่ทำงานได้จริง</td>
+                    <td class="p-2.5">• <strong>Output:</strong> Built and tested product solutions<br/>• <strong>Continuous Integration (CI):</strong> นักพัฒนารวมโค้ดเข้าสู่คลังกลางสม่ำเสมอพร้อมรันการ Build และ Test อัตโนมัติเพื่อจับข้อผิดพลาดแต่เนิ่นๆ</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">5. Transition</td>
+                    <td class="p-2.5">นำผลิตภัณฑ์ใหม่หรือที่อัปเดตเข้าสู่สภาพแวดล้อมการใช้งานจริง (Live environment) อย่างราบรื่น และ On/offboard ซัพพลายเออร์</td>
+                    <td class="p-2.5">• <strong>Release</strong> (เวอร์ชันที่พร้อมใช้งาน) vs. <strong>Change</strong> (การเพิ่ม/แก้ไข/ลบสิ่งที่มีผลกระทบต่อบริการ)<br/>• <strong>Continuous Delivery</strong> (พร้อมปล่อยขึ้น Production ได้ทุกเมื่อ แต่ตัดสินใจปล่อยเป็นรายกรณี) vs. <strong>Continuous Deployment</strong> (ปล่อยขึ้น Live อัตโนมัติทันทีที่ผ่านไปป์ไลน์)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">6. Operate</td>
+                    <td class="p-2.5">ดูแลรักษาและเฝ้าระวังผลิตภัณฑ์ดิจิทัลและระบบสนับสนุน เพื่อให้ได้สมรรถนะและความน่าเชื่อถือสูงสุด (มักอยู่หลังบ้าน)</td>
+                    <td class="p-2.5">• <strong>SRE (Site Reliability Engineering):</strong> นำวิศวกรรมซอฟต์แวร์มาแก้ปัญหาโครงสร้างพื้นฐานและปฏิบัติการ<br/>• <strong>Observability:</strong> เข้าใจสถานะภายในของระบบจากข้อมูลภายนอก (Metrics, Logs, Traces)<br/>• <strong>Event:</strong> การเปลี่ยนสถานะที่มีนัยสำคัญต่อการจัดการบริการ</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">7. Deliver</td>
+                    <td class="p-2.5">ส่งมอบบริการให้ผู้ใช้ จัดการการ Onboard/Offboard ผู้ใช้ รักษามาตรฐานคุณภาพตาม SLA และรวบรวม Feedback</td>
+                    <td class="p-2.5">• <strong>Output:</strong> Delivered services & Performance/feedback reports<br/>• <strong>Service Request:</strong> คำร้องขอจากผู้ใช้เพื่อเริ่มการกระทำบริการที่เป็นส่วนปกติของการส่งมอบบริการ</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-extrabold text-purple-900">8. Support</td>
+                    <td class="p-2.5">ระบุและแก้ไขอุบัติการณ์ (Incidents) ปฏิบัติตามขั้นตอนการกู้คืนจากภัยพิบัติ (Disaster recovery) และรับฟังผู้ใช้</td>
+                    <td class="p-2.5">• <strong>Incident:</strong> การหยุดชะงักที่ไม่ได้วางแผนไว้หรือคุณภาพบริการลดลง<br/>• <strong>Disaster:</strong> เหตุการณ์กะทันหันที่สร้างความเสียหายร้ายแรงจนให้บริการหลักไม่ได้ตามเวลาที่กำหนด<br/>• <strong>Error</strong> (ข้อบกพร่อง) &rarr; <strong>Problem</strong> (สาเหตุของหนึ่งหรือหลาย Incidents) &rarr; <strong>Known Error</strong> (ปัญหาที่วิเคราะห์สาเหตุแล้วแต่ยังไม่ได้แก้ไขถาวร)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
+              <strong class="text-amber-950 block mb-1">Module 7: Value Streams (Core vs. Enabling) & 5 ขั้นตอนของ Value Stream Mapping</strong>
+              • <strong>Value Stream (สายธารคุณค่า):</strong> ลำดับขั้นตอนการทำงานจริง (Real workflows, not blueprints) ที่องค์กรใช้สร้างและส่งมอบผลิตภัณฑ์และบริการ แบ่งเป็น <strong>Core Value Stream</strong> (สร้างคุณค่าให้ผู้บริโภคภายนอกตาม Operating model) และ <strong>Enabling Value Stream</strong> (สร้างคุณค่าให้ลูกค้าภายในเพื่อสนับสนุน Core Value Stream เช่น ระบบจ่ายเงินเดือน Payroll)<br/>
+              • <strong>5 ขั้นตอนของ Value Stream Mapping (เรียงตามลำดับ):</strong><br/>
+              <code>1. Identify the value stream</code> &rarr; <code>2. Map the 'as-is' stream</code> &rarr; <code>3. Analyse the stream (แยกกิจกรรมที่เพิ่มคุณค่า Value-adding ออกจากความสูญเปล่า Non-value-adding / Waste)</code> &rarr; <code>4. Map the 'to-be' stream</code> &rarr; <code>5. Plan and implement improvements</code><br/>
+              • <strong>Value Stream Mapping vs. Value Stream Management:</strong> Mapping คือเทคนิคการวาดภาพและวิเคราะห์การไหลของงานเพื่อหาจุดปรับปรุง ส่วน Management คือการมุ่งเน้นบริหารจัดการอย่างต่อเนื่อง (ทั้ง "management of" และ "management through" streams)
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 2: 100 INTERACTIVE MCQs ==================== -->
+    <section id="section-quiz" class="hidden space-y-5">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <span id="quizBadge" class="inline-block px-3 py-0.5 rounded-full text-xs font-extrabold bg-amber-400 text-slate-950 mb-1">
+              Interactive Mock Exam • English MCQs with Thai Explanations
+            </span>
+            <h2 id="quizTitle" class="text-xl font-extrabold text-slate-900">
+              ชุดข้อสอบจำลองปรนัย (คลิกเลือกคำตอบเพื่อตรวจและอ่านเหตุผลได้ทันที)
+            </h2>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span id="scoreBadge" class="px-4 py-2 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs sm:text-sm font-extrabold">
+              คะแนน: 0 / 50
+            </span>
+            <button onclick="showAllExplanations()" class="px-3.5 py-2 rounded-xl border border-slate-300 hover:bg-slate-100 text-xs sm:text-sm font-bold text-slate-700 transition">
+              👁️ เฉลยทั้งหมด
+            </button>
+            <button onclick="resetQuiz()" class="px-3.5 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-xs sm:text-sm font-bold transition">
+              🔄 เริ่มทำใหม่
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="quizContainer" class="space-y-4"></div>
+    </section>
+
+    <!-- ==================== TAB 3: CALCULATORS & TEMPLATES ==================== -->
+    <section id="section-tools" class="hidden space-y-6">
+      <!-- EGIT503 Calculators & Abstracts -->
+      <div id="tools-503" class="space-y-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h2 class="text-xl font-extrabold text-blue-950 border-b pb-2">🧮 เครื่องคำนวณขนาดกลุ่มตัวอย่าง (Sample Size Calculators - EGIT503)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- Yamane -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 class="font-extrabold text-sm text-blue-900">1. สูตร Taro Yamane (ทราบ N)</h3>
+              <p class="text-xs text-slate-500">สูตร: n = N / (1 + Ne²)</p>
+              <label class="block text-xs font-bold">จำนวนประชากร (N):</label>
+              <input type="number" id="yamane-N" value="5000" oninput="calcYamane()" class="w-full px-3 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+              <label class="block text-xs font-bold">ค่าความคลาดเคลื่อน (e):</label>
+              <input type="number" step="0.01" id="yamane-e" value="0.05" oninput="calcYamane()" class="w-full px-3 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+              <div id="yamane-res" class="p-3 rounded-lg bg-blue-100 text-blue-950 text-xs font-bold mt-2"></div>
+            </div>
+
+            <!-- Cochran -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 class="font-extrabold text-sm text-blue-900">2. สูตร Cochran (ไม่ทราบ N & ปรับแก้ FPC)</h3>
+              <p class="text-xs text-slate-500">สูตร: n₀ = z²p(1-p) / e²</p>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-xs font-bold">ค่า Z (95%=1.96):</label>
+                  <input type="number" step="0.01" id="cochran-z" value="1.96" oninput="calcCochran()" class="w-full px-2 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold">สัดส่วน p:</label>
+                  <input type="number" step="0.05" id="cochran-p" value="0.5" oninput="calcCochran()" class="w-full px-2 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-xs font-bold">Error (e):</label>
+                  <input type="number" step="0.01" id="cochran-e" value="0.05" oninput="calcCochran()" class="w-full px-2 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold">ถ้ารู้ N (FPC):</label>
+                  <input type="number" id="cochran-N" value="3000" oninput="calcCochran()" class="w-full px-2 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+                </div>
+              </div>
+              <div id="cochran-res" class="p-3 rounded-lg bg-indigo-100 text-indigo-950 text-xs font-bold mt-2"></div>
+            </div>
+
+            <!-- Mean Estimation -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 class="font-extrabold text-sm text-blue-900">3. ประมาณค่าเฉลี่ยประชากร (ทราบ σ)</h3>
+              <p class="text-xs text-slate-500">สูตร: n = (z·σ / E)²</p>
+              <label class="block text-xs font-bold">ค่า Z (90%=1.645):</label>
+              <input type="number" step="0.005" id="mean-z" value="1.645" oninput="calcMeanSize()" class="w-full px-3 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-xs font-bold">ส่วนเบี่ยงเบน (σ):</label>
+                  <input type="number" step="0.5" id="mean-sd" value="4.0" oninput="calcMeanSize()" class="w-full px-2 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold">Error ที่ยอมรับ (E):</label>
+                  <input type="number" step="0.1" id="mean-E" value="1.0" oninput="calcMeanSize()" class="w-full px-2 py-1.5 rounded-lg border border-slate-300 text-sm font-bold" />
+                </div>
+              </div>
+              <div id="mean-res" class="p-3 rounded-lg bg-emerald-100 text-emerald-950 text-xs font-bold mt-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <h2 class="text-xl font-extrabold text-blue-950 border-b pb-2">📑 วิเคราะห์โครงสร้าง Abstract ทั้ง 4 เรื่อง (จากไฟล์ Example for Abstract.pdf)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <strong class="text-blue-900 block">1. PV/T Air Heating Collector & Condenser Heat Recovery (2009)</strong>
+              <p>• <strong>Objective:</strong> ตรวจสอบความเที่ยงตรงของแบบจำลอง Simulation ในการทำนายสมรรถนะของระบบดึงความร้อนทิ้งจากคอนเดนเซอร์ร่วมกับแผง PV/T เพื่อฟื้นฟูสารดูดความชื้น</p>
+              <p>• <strong>Method:</strong> เปรียบเทียบผลจำลองกับผลการทดลองจริงจากระบบ 5 ส่วนหลักภายใต้ข้อมูลอุตุนิยมวิทยาเดียวกัน</p>
+              <p>• <strong>Result & Conclusion:</strong> ผลจำลองสอดคล้องกับผลทดลอง ได้อากาศร้อนแห้ง 53°C ความชื้นสัมพัทธ์ 23%, ได้ไฟฟ้า 6% และประหยัดพลังงานแอร์ได้ประมาณ <strong>18%</strong></p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <strong class="text-blue-900 block">2. Blockchain P2P Electricity Trading in Thailand (2024)</strong>
+              <p>• <strong>Problem & Objective:</strong> กฟผ. ผูกขาดและกำหนดราคาไฟฝ่ายเดียว จึงนำเสนอโมเดลการใช้ Blockchain เป็นแพลตฟอร์มซื้อขายไฟฟ้าเสรี (P2P)</p>
+              <p>• <strong>Method:</strong> ใช้ระบบประมูลสองทาง (Double auction), กฎอุปสงค์-อุปทาน และกราฟสองส่วน (Bipartite graph)</p>
+              <p>• <strong>Result & Conclusion:</strong> แนวโน้มราคาสอดคล้องกับสมการดุลยภาพราคา สร้างความเป็นธรรมในห่วงโซ่อุปทานไฟฟ้าไทยได้</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <strong class="text-blue-900 block">3. Machine Learning for STEM Skills in HRM (2025)</strong>
+              <p>• <strong>Objective:</strong> ประยุกต์ใช้ ML วิเคราะห์ข้อมูลระบบ HRM เพื่อวางแผนพัฒนาบุคลากรด้านทักษะ STEM และหาโมเดลที่แม่นยำที่สุด</p>
+              <p>• <strong>Method:</strong> เปรียบเทียบ KNN, Random Forests, SVM, MLP, CatBoost พร้อมจัดการข้อมูลไม่สมดุล (Imbalanced data)</p>
+              <p>• <strong>Result & Conclusion:</strong> <strong>KNN และ Random Forests</strong> ให้ความแม่นยำและค่า ROC สูงสุด ช่วยเพิ่มประสิทธิภาพการวางแผน HRM</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <strong class="text-blue-900 block">4. Predicting & Managing EV Charging Demand (2023)</strong>
+              <p>• <strong>Objective & Method:</strong> พัฒนาแบบจำลอง Simulation ทำนายความต้องการใช้ไฟสูงสุดจากการชาร์จ EV ในบ้าน และทดสอบกลยุทธ์ราคาค่าไฟตามช่วงเวลา (TOU tariff)</p>
+              <p>• <strong>Result & Conclusion:</strong> อัตราค่าไฟ TOU ปัจจุบันรองรับการเติบโตของผู้ใช้ EV ได้ <strong>20%</strong> ส่วนกลยุทธ์ราคา TOU ทางเลือกใหม่รองรับได้สูงถึง <strong>30%</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EGIT515 Workshops & Templates -->
+      <div id="tools-515" class="space-y-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h2 class="text-xl font-extrabold text-purple-950 border-b pb-2">🛠️ สรุปแม่แบบ Workshop 1 & 2, Business Case และ Service Portfolio (EGIT515)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-purple-50 border border-purple-200 space-y-1.5">
+              <strong class="text-purple-950 block text-base">1. ตัวอย่างการกรอก Service Value Canvas (ITIL Car Rental)</strong>
+              <p>• <strong>1. Organization & Consumer:</strong> ITIL Car Rental / ลูกค้าคือคนเมืองและคนรุ่นใหม่</p>
+              <p>• <strong>2. Provided Service:</strong> บริการรถยนต์ไร้คนขับ (Driverless cars as a service: ให้สิทธิ์ Access to resources แอปและรถ + Service actions ซัพพอร์ต)</p>
+              <p>• <strong>3. Intended Outcomes:</strong> ลูกค้าเดินทางยืดหยุ่น สะดวก ราคาประหยัด / เมืองมีรถน้อยลง อากาศสะอาดขึ้น</p>
+              <p>• <strong>4. Costs:</strong> <strong>Removed</strong> = ค่าซื้อและดูแลรถยนต์ส่วนตัว | <strong>Imposed</strong> = ค่าธรรมเนียมเช่ารถ (Rental fee)</p>
+              <p>• <strong>5. Risks:</strong> <strong>Removed</strong> = โอนความเสี่ยงอุบัติเหตุบนท้องถนนให้ผู้ให้บริการดูแล | <strong>Imposed</strong> = ความเสี่ยงซอฟต์แวร์รวนหรือถูกแฮก (Cybersecurity incident)</p>
+              <p>• <strong>6. Value Perspective:</strong> เข้าถึงการเดินทางที่คล่องตัวโดยไร้ภาระการเป็นเจ้าของรถ พร้อมรับผิดชอบต่อสิ่งแวดล้อม</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 space-y-1.5">
+              <strong class="text-amber-950 block text-base">2. โครงสร้าง Business Case & Service Portfolio Templates</strong>
+              <p>• <strong>Business Case Template (คิดครบ 4P: People, Products, Processes, Partner):</strong><br/>
+                1. Executive Summary (ไม่เกิน 1–2 หน้า: Challenge, Summary, Recommendation)<br/>
+                2. Scope & Value for the Business<br/>
+                3. Recommended Solution & Alternatives (และเหตุผลที่ไม่เลือกทางเลือกอื่น)<br/>
+                4. Cost (รวมทั้งต้นทุนโครงการและ Ongoing management costs หลังจบโครงการ)<br/>
+                5. Organizational Changes (การจัดการ <strong>Attitude, Behavior, Culture - ABC</strong>)<br/>
+                6. Results & Benefits (ระบุ Baseline จุดเริ่มต้น และวิธีวัดผล)<br/>
+                7. Assumptions, Risks & Economic Calculation (ถ่วงน้ำหนักผลประโยชน์ด้วยโอกาสเกิดความเสี่ยง เช่น เสี่ยงไม่สำเร็จ 60%)
+              </p>
+              <p>• <strong>Service Portfolio Template:</strong> แบ่งเป็น 4 Service Areas (Operation, Capacity, Application Mgmt, Consulting), ระบุสถานะบริการ (<strong>Pipeline, Live/Operational, Retired</strong>) และจัด Service Packages เป็น <strong>Core, Supporting, และ Enhancing services</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 mt-12 py-5 text-center text-xs">
+    MU-ITM Master's Study Hub • รวมสรุปเนื้อหาและคลังข้อสอบวิชา EGIT503 Research Methodology และ EGIT515 ITIL Version 5
+  </footer>
+
+  <script>
+    const quizzes = {
+      "503": [
+        {q: "1. [EGIT503] According to the Office of the Royal Society (สำนักงานราชบัณฑิตยสภา), which primary research method is typically used in the Humanities?", opts: ["A. Experimental research and observation", "B. Survey research using questionnaires", "C. Documentary research", "D. Simulation modeling"], ans: 2, exp: "ราชบัณฑิตยสภาระบุว่า วิทยาศาสตร์ใช้วิธีทดลองและสังเกต, สังคมศาสตร์ใช้วิธีวิจัยเชิงสำรวจ (Survey), และมนุษยศาสตร์ใช้วิธีวิจัยเชิงเอกสาร (Documentary research)"},
+        {q: "2. [EGIT503] In the general research process flowchart, which stage receives a direct feedback loop from 'Data Analysis (Hypotheses Test)'?", opts: ["A. Issue", "B. Research Design", "C. Report", "D. Literature Review"], ans: 1, exp: "ในแผนผัง Research Process มีเส้นย้อนกลับจาก Data Analysis กลับไปยัง Research Design เพื่อตรวจสอบหรือปรับปรุงการออกแบบวิจัย"},
+        {q: "3. [EGIT503] Which of the following is NOT one of the three main criteria for research classification taught in Lecture 1?", opts: ["A. Classification based on methods", "B. Classification based on purposes", "C. Classification based on funding budget", "D. Classification based on ability to experiment"], ans: 2, exp: "เกณฑ์การแบ่งประเภทงานวิจัย 3 หลักเกณฑ์ คือ 1. แบ่งตามวิธีการ (Methods), 2. แบ่งตามวัตถุประสงค์ (Purposes), และ 3. แบ่งตามความสามารถในการทดลอง (Ability to experiment)"},
+        {q: "4. [EGIT503] Which of the following is a subdivision of Descriptive Research?", opts: ["A. Meta-analysis", "B. Survey Research, Case Study, and Content Analysis", "C. True Experimental Research", "D. Philosophical Research"], ans: 1, exp: "งานวิจัยเชิงพรรณนา (Descriptive Research) แบ่งย่อยออกเป็น 3 ประเภท คือ Survey Research, The Case Study, และ Content Analysis"},
+        {q: "5. [EGIT503] How does 'Discrete Data' differ from 'Continuous Data' under Quantitative Research?", opts: ["A. Discrete data is observed with senses, while continuous data uses words.", "B. Discrete data is counted in whole numbers (e.g., 4 cups of coffee), while continuous data is measured on a scale (e.g., 80g of coffee).", "C. Discrete data is qualitative, while continuous data is quantitative.", "D. Discrete data cannot be analyzed statistically."], ans: 1, exp: "Discrete data คือข้อมูลเชิงปริมาณแบบไม่ต่อเนื่องที่นับเป็นจำนวนเต็ม (เช่น กาแฟ 4 แก้ว) ส่วน Continuous data คือข้อมูลต่อเนื่องที่ได้จากการชั่ง ตวง วัด (เช่น กาแฟ 80 กรัม)"},
+        {q: "6. [EGIT503] A researcher develops the Technology Acceptance Model (TAM) to explain abstract relationships between perceived usefulness and system use. What type of research is this?", opts: ["A. Action Research", "B. Historical Research", "C. Conceptual Research", "D. Ethnographic Research"], ans: 2, exp: "Conceptual Research เกี่ยวข้องกับแนวคิดหรือทฤษฎีที่เป็นนามธรรมเพื่อพัฒนาแนวคิดใหม่ เช่น Technology Acceptance Model (TAM)"},
+        {q: "7. [EGIT503] Sir Isaac Newton's formulation of the laws of motion in 'Principia Mathematica' is a classic example of:", opts: ["A. Action Research", "B. Basic / Pure / Fundamental Research", "C. Evaluation Research", "D. Marketing Research"], ans: 1, exp: "กฎการเคลื่อนที่ของนิวตันเป็นตัวอย่างของ Basic / Pure / Fundamental Research ที่มุ่งสร้างทฤษฎีอธิบายปรากฏการณ์ธรรมชาติและประยุกต์ใช้ได้กว้าง"},
+        {q: "8. [EGIT503] Which type of research aims to find an immediate solution to a practical problem affecting a specific institution or organization?", opts: ["A. Action / Applied Research", "B. Historical Research", "C. Pure Fundamental Research", "D. Philosophical Research"], ans: 0, exp: "Action Research (ภายใต้ Applied Research) มุ่งหาทางแก้ปัญหาเฉพาะหน้าขององค์กรหรือสถาบัน"},
+        {q: "9. [EGIT503] What is the key difference between 'True Experimental' and 'Quasi-Experimental' research?", opts: ["A. Quasi-experimental research does not examine cause-and-effect relationships.", "B. True experimental research has a high degree of control and full randomization, whereas quasi-experimental research tests causal relationships without full control (e.g., pre-existing groups like gender).", "C. True experimental research only studies past events.", "D. Quasi-experimental research is a form of qualitative documentary research."], ans: 1, exp: "Quasi-experimental มุ่งทดสอบความสัมพันธ์เชิงสาเหตุแต่ผู้วิจัยไม่สามารถควบคุมหรือสุ่มหน่วยทดลองเข้ากลุ่มได้อย่างสมบูรณ์ (เช่น เพศชาย-หญิง)"},
+        {q: "10. [EGIT503] What is the distinction between 'Research Method' and 'Research Methodology'?", opts: ["A. They are completely identical terms.", "B. Research Method refers to all techniques/tools used to conduct research, while Research Methodology is the systematic science of how research problems are solved.", "C. Research Methodology only refers to statistical software.", "D. Research Method is only used in humanities."], ans: 1, exp: "Research Method คือเทคนิค/วิธีการที่ใช้เก็บและวิเคราะห์ข้อมูล ส่วน Research Methodology คือระเบียบวิธีวิจัยหรือศาสตร์ในการแก้ปัญหาการวิจัยอย่างเป็นระบบ"},
+        {q: "11. [EGIT503] Choosing a 'Hot Topic' (e.g., Blockchain, Fintech) over a 'Classical Topic' has which of the following disadvantages?", opts: ["A. It is impossible to publish.", "B. Immediate feedback is very slow.", "C. Your thesis can die young (become outdated quickly) and scientific quality can be low.", "D. There is no vibrant community."], ans: 2, exp: "ข้อเสียของ Hot Topic คือหัวข้ออาจล้าสมัยเร็ว (Thesis can die young) และคุณภาพทางวิทยาศาสตร์อาจต่ำกว่า Classical Topic"},
+        {q: "12. [EGIT503] Which stage of the Gartner Hype Cycle comes immediately after the 'Peak of Inflated Expectations'?", opts: ["A. Innovation Trigger", "B. Slope of Enlightenment", "C. Trough of Disillusionment", "D. Plateau of Productivity"], ans: 2, exp: "ลำดับ Gartner Hype Cycle คือ 1. Innovation Trigger -> 2. Peak of Inflated Expectations -> 3. Trough of Disillusionment -> 4. Slope of Enlightenment -> 5. Plateau of Productivity"},
+        {q: "13. [EGIT503] In the Engineering Research Process, after developing a 'Design Scheme', what are the three typical evaluation pathways?", opts: ["A. Survey, Interview, and Focus Group", "B. Math Model, Simulation, and Implementation", "C. Historical, Philosophical, and Documentary", "D. Data Exploration, Preprocessing, and Deployment"], ans: 1, exp: "ในสายวิศวกรรมศาสตร์ เมื่อออกแบบ Design Scheme แล้ว จะประเมินผลผ่าน 3 แนวทางหลัก คือ Math Model, Simulation, และ Implementation"},
+        {q: "14. [EGIT503] Which statement accurately describes 'ScienceDirect' and 'Elsevier'?", opts: ["A. ScienceDirect is the publisher, and Elsevier is the database.", "B. Elsevier is the publisher, and ScienceDirect is the research database.", "C. Both are open-source reference managers.", "D. ScienceDirect only indexes medical journals like PubMed."], ans: 1, exp: "Elsevier คือสำนักพิมพ์ (Publisher) ส่วน ScienceDirect คือฐานข้อมูล (Database) ที่ให้บริการโดย Elsevier"},
+        {q: "15. [EGIT503] Why must students and researchers strictly avoid using download manager bots or downloading all articles in an entire journal issue on Mahidol's network?", opts: ["A. It causes the PDF files to be corrupted.", "B. High-volume robotic downloading violates academic fair use agreements and causes the publisher to block the entire university's access.", "C. It reduces the journal's Impact Factor.", "D. It deletes the articles from Scopus."], ans: 1, exp: "การโหลดด้วยบอทหรือโหลดทั้งฉบับละเมิดข้อตกลง Academic Fair Use และจะทำให้สำนักพิมพ์บล็อกการเข้าถึงของมหาวิทยาลัยทั้งหมด"},
+        {q: "16. [EGIT503] In the Peer Review process, how many experts (peers) in the field typically review a submitted manuscript after the editor's initial screening?", opts: ["A. 1 expert", "B. 3 to 5 experts", "C. 17 to 30 experts", "D. 400 to 500 experts"], ans: 1, exp: "ในสไลด์ The Peer Review Process ระบุว่าบทความจะได้รับการประเมินโดยผู้เชี่ยวชาญในสาขาจำนวน 3–5 คน"},
+        {q: "17. [EGIT503] What is a defining characteristic of 'Gold Open Access' publishing compared to 'Traditional Subscription' publishing?", opts: ["A. Articles are locked behind paywalls for 5 years.", "B. Authors transfer all copyright to the publisher and pay nothing.", "C. Articles are immediately and freely accessible to the public, authors retain copyright (e.g., CC license), and an Article Processing Charge (APC) may be required.", "D. Gold Open Access journals do not perform peer review."], ans: 2, exp: "Gold Open Access เปิดให้ผู้อ่านเข้าถึงฟรีทันที ผู้แต่งถือลิขสิทธิ์เองภายใต้สัญญาอนุญาตเปิด (เช่น CC) โดยอาจมีค่าธรรมเนียมการตีพิมพ์ (APC)"},
+        {q: "18. [EGIT503] How is the JCR Journal Impact Factor (JIF) calculated?", opts: ["A. Citations in the current JCR year to items published in the previous 2 years, divided by the total citable items published in those previous 2 years.", "B. Total citations over 10 years divided by the number of authors.", "C. Weighted citations over the previous 3 years from Scopus.", "D. Peer review acceptance rate multiplied by download count."], ans: 0, exp: "JCR Impact Factor คำนวณจากจำนวนการอ้างอิงในปีปัจจุบันต่อบทความที่ตีพิมพ์ใน 2 ปีก่อนหน้า หารด้วยจำนวนบทความที่ตีพิมพ์ใน 2 ปีก่อนหน้า ($IF = (C_1+C_2)/(A_1+A_2)$)"},
+        {q: "19. [EGIT503] How does the SCImago Journal Rank (SJR) indicator differ from the JCR Impact Factor?", opts: ["A. SJR uses a 3-year citation window from Scopus and weights citations based on the prestige of the citing journal.", "B. SJR only measures Thai journals in TCI.", "C. SJR uses a 1-year window from Web of Science.", "D. SJR does not consider citations."], ans: 0, exp: "SJR คำนวณจากฐานข้อมูล Scopus โดยใช้ช่วงเวลา 3 ปีก่อนหน้า และถ่วงน้ำหนักตามความมีชื่อเสียง (Prestige) ของวารสารที่อ้างอิงมา"},
+        {q: "20. [EGIT503] If a journal is ranked in 'Q1' (Quartile 1) in its subject category, what does this mean?", opts: ["A. It is in the bottom 25% of journals in that category.", "B. It is in the top 25% (highest position) of journals in that category.", "C. It is only published once every quarter.", "D. It is a predatory journal."], ans: 1, exp: "Q1 หมายถึงวารสารที่อยู่ในกลุ่มสูงสุด 25% แรก (Top 25%) ของสาขาวิชานั้นๆ"},
+        {q: "21. [EGIT503] What is the main flaw in a 'bad' literature review according to Lecture 3?", opts: ["A. Grouping papers that share the same idea into a synthesized paragraph.", "B. Writing a descriptive paper-by-paper summary in separate paragraphs without synthesizing shared ideas.", "C. Citing recent scholarly articles from the last 10 years.", "D. Using a comparison table to highlight the research gap."], ans: 1, exp: "การเขียนสรุปแยกทีละเปเปอร์เรียงกันไปเรื่อยๆ (Paper-by-paper summary) โดยไม่จัดกลุ่มประเด็นเดียวกัน (Grouping the same idea) ถือเป็นตัวอย่างการเขียนที่ไม่ดีและเสี่ยงถูก Reject"},
+        {q: "22. [EGIT503] A researcher notices that while smart home sensors have been extensively studied using quantitative surveys, no one has analyzed them using a qualitative ethnographic approach. What type of research gap is this?", opts: ["A. Knowledge-based gap", "B. Relationship-based gap", "C. Analytical / Methodological gap", "D. Citation gap"], ans: 2, exp: "การที่ปรากฏการณ์นั้นยังไม่เคยถูกศึกษาด้วยระเบียบวิธีวิจัยหรือแนวทางการวิเคราะห์นั้นมาก่อน (เช่น Qualitative vs Quantitative) จัดเป็น Analytical / Methodological gap"},
+        {q: "23. [EGIT503] Which citation style uses numbered brackets like '[1]' in the text and lists author initials before surnames (e.g., P. Jaruwatanachai, Y. Sukamongkol, and T. Samanchuen)?", opts: ["A. APA Style", "B. IEEE Style", "C. Chicago Author-Date Style", "D. MLA Style"], ans: 1, exp: "รูปแบบ IEEE ใช้ตัวเลขในวงเล็บเหลี่ยม [1] และเขียนชื่อย่อตามด้วยนามสกุล"},
+        {q: "24. [EGIT503] Which model evaluates Information Systems success based on System Quality, Information Quality, and Service Quality?", opts: ["A. Technology Acceptance Model (TAM)", "B. DeLone and McLean IS Success Model", "C. Protection Motivation Theory (PMT)", "D. TOE Framework"], ans: 1, exp: "DeLone & McLean IS Success Model ประเมินความสำเร็จของระบบสารสนเทศจาก 3 มิติหลัก คือ System Quality, Information Quality, และ Service Quality"},
+        {q: "25. [EGIT503] When studying how an organization decides to adopt a new digital innovation at the enterprise level, which theoretical framework considers Technology, Organization, and Environment?", opts: ["A. TOE Framework", "B. S-O-R Model", "C. Flow Theory", "D. Privacy Calculus Theory"], ans: 0, exp: "TOE Framework (Technology-Organization-Environment) ใช้ศึกษาระดับองค์กรในการตัดสินใจนำเทคโนโลยีหรือนวัตกรรมมาใช้"},
+        {q: "26. [EGIT503] Which theory explains how users weigh the expected benefits of using a digital service against the potential risks of disclosing their personal data?", opts: ["A. Cognitive Load Theory", "B. Privacy Calculus Theory", "C. Bayesian Decision Theory", "D. SERVQUAL"], ans: 1, exp: "Privacy Calculus Theory คือทฤษฎีการชั่งน้ำหนักความเป็นส่วนตัว (เปรียบเทียบประโยชน์ที่ได้รับกับความเสี่ยงด้านข้อมูลส่วนบุคคล)"},
+        {q: "27. [EGIT503] If a researcher wants to evaluate the 'Usability & UX' dimension of a newly developed AI platform, which evaluation methods/metrics are most appropriate?", opts: ["A. RMSE, MAE, and MAPE", "B. Latency, Throughput, and Stress Testing", "C. Usability Testing, Task Completion, SUS (System Usability Scale), and UEQ", "D. Net Present Value (NPV)"], ans: 2, exp: "การประเมินมิติ Usability & UX ใช้การทดสอบ Usability Testing, Task Completion, และแบบวัดมาตรฐาน SUS หรือ UEQ"},
+        {q: "28. [EGIT503] In the practical process of developing a research topic (Lecture 4), how do 'Idea' and 'Literature Review' interact?", opts: ["A. Literature Review is only done after data collection is finished.", "B. Idea and Literature Review interact iteratively back-and-forth before formulating the Research Question and Research Hypothesis.", "C. Literature Review is skipped if the researcher has a strong hypothesis.", "D. Research Hypothesis must be finalized before reading any literature."], ans: 1, exp: "ในทางปฏิบัติ (Practical process) ผู้วิจัยจะพัฒนา Idea ควบคู่ไปกับการทำ Literature Review ไปมา (Iterative) ก่อนจะสรุปเป็น Research Question และ Research Hypothesis"},
+        {q: "29. [EGIT503] Which of the following represents a 'Directional Research Hypothesis' comparing Grab Taxi income (μ_g) and normal taxi income (μ_n)?", opts: ["A. H0: μ_g = μ_n", "B. H1: μ_g ≠ μ_n", "C. H1: μ_g > μ_n", "D. H0: μ_g ≠ 0"], ans: 2, exp: "สมมติฐานการวิจัยแบบมีทิศทาง (Directional Research Hypothesis) จะระบุทิศทางมากกว่าหรือน้อยกว่าอย่างชัดเจน เช่น $H_1: \mu_g > \mu_n$"},
+        {q: "30. [EGIT503] How does 'Descriptive/Diagnostic' research design differ from 'Exploratory/Formulative' research design?", opts: ["A. Descriptive design is flexible and uses non-probability sampling.", "B. Descriptive design is rigid (to protect against bias and maximize reliability), uses probability sampling, and has a pre-planned statistical design.", "C. Exploratory design requires structured instruments and fixed operational decisions.", "D. There is no difference between the two designs."], ans: 1, exp: "Descriptive research design ต้องมีความเข้มงวด (Rigid design) เพื่อป้องกันอคติ ใช้การสุ่มแบบอาศัยความน่าจะเป็น (Probability sampling) และวางแผนการวิเคราะห์ไว้ล่วงหน้า"},
+        {q: "31. [EGIT503] Suppose a study examines the effect of a new teaching method (X) on student test scores (Y). However, students' prior IQ (Z), which is not part of the study objective, also affects the test scores. What type of variable is prior IQ (Z)?", opts: ["A. Dependent variable", "B. Extraneous variable", "C. Treatment variable", "D. Criterion variable"], ans: 1, exp: "ตัวแปรอิสระอื่นที่ไม่ได้อยู่ในวัตถุประสงค์ของการวิจัยแต่ส่งผลกระทบต่อตัวแปรตาม เรียกว่า ตัวแปรแทรกซ้อน (Extraneous variable)"},
+        {q: "32. [EGIT503] In Experimental Research Design, grouping homogeneous experimental units together into blocks to reduce experimental error is known as:", opts: ["A. Local Control (Blocking & Balancing)", "B. Convenience Sampling", "C. Confounding", "D. Snowballing"], ans: 0, exp: "การจัดบล็อก (Blocking) และการปรับสมดุล (Balancing) เพื่อรวมหน่วยทดลองที่เหมือนกันเข้าด้วยกันและลดความคลาดเคลื่อน คือหลักการ Local Control"},
+        {q: "33. [EGIT503] Which of the following is a violation of good questionnaire item wording?", opts: ["A. Using the funnel technique from general to specific questions.", "B. Asking 'Are you satisfied with the speed and politeness of the staff?' in a single item.", "C. Having 3 to 5 items per subscale to calculate Cronbach's alpha.", "D. Keeping the total completion time under 15–20 minutes."], ans: 1, exp: "การถาม 2 ประเด็นในข้อเดียว (ความเร็ว และ ความสุภาพ - Double-barreled question) เป็นข้อห้ามในการออกแบบข้อคำถาม เพราะผู้ตอบอาจพอใจความเร็วแต่ไม่พอใจความสุภาพ"},
+        {q: "34. [EGIT503] What is the minimum acceptable threshold for the Index of Item-Objective Congruence (IOC) and Cronbach's Alpha (α) in typical Thai academic research?", opts: ["A. IOC ≥ 0.10 and Cronbach's Alpha ≥ 0.20", "B. IOC ≥ 0.50–0.60 (evaluated by 3–5 experts) and Cronbach's Alpha ≥ 0.70 (try-out with ≥ 30 people)", "C. IOC = 1.00 only and Cronbach's Alpha = 1.00", "D. IOC ≤ 0.50 and Cronbach's Alpha ≤ 0.50"], ans: 1, exp: "เกณฑ์มาตรฐานที่ยอมรับคือ IOC ≥ 0.50–0.60 (ประเมินโดยผู้เชี่ยวชาญ 3–5 ท่าน) และค่าความเชื่อมั่น Cronbach's Alpha ≥ 0.70 (ทดลองใช้กับกลุ่มตัวอย่าง ≥ 30 คน)"},
+        {q: "35. [EGIT503] Which statistical measure is used to verify consensus among 17–30 experts in the Delphi Technique?", opts: ["A. Interquartile Range (IQR ≤ 1.0 or 1.5) and Coefficient of Variation (CV ≤ 0.5)", "B. Independent t-test only", "C. Pearson's r", "D. JCR Impact Factor"], ans: 0, exp: "เทคนิค Delphi วัดฉันทามติ (Consensus) ของผู้เชี่ยวชาญ (17–30 คน) ด้วยค่าพิสัยควอไทล์ (IQR ≤ 1.0 หรือ 1.5) หรือค่าสัมประสิทธิ์การแปรผัน (CV ≤ 0.5)"},
+        {q: "36. [EGIT503] When two observers independently rate student behavior using a rubric, which statistic should be used to verify inter-rater reliability?", opts: ["A. Yamane's formula", "B. Cohen's Kappa (K ≥ 0.60–0.80)", "C. Central Limit Theorem", "D. Z-score"], ans: 1, exp: "เมื่อมีผู้สังเกตหรือผู้ประเมิน 2 คน จะใช้สถิติ Cohen's Kappa (K ≥ 0.60–0.80) เพื่อวัดความสอดคล้องตรงกันของผู้ประเมิน (Inter-rater reliability)"},
+        {q: "37. [EGIT503] A researcher divides a population of radio listeners into three non-overlapping age groups (20–30, 30–40, 40–50) where members within each group are homogeneous, and then randomly selects samples from every age group. What sampling method is this?", opts: ["A. Cluster Sampling", "B. Stratified Random Sampling", "C. Snowball Sampling", "D. Convenience Sampling"], ans: 1, exp: "การแบ่งประชากรออกเป็นกลุ่มย่อย (Strata) ที่ภายในกลุ่มเหมือนกัน (Homogeneous within) และระหว่างกลุ่มต่างกัน (Heterogeneous between) แล้วสุ่มตัวอย่างจากทุกกลุ่ม คือ Stratified Random Sampling"},
+        {q: "38. [EGIT503] A company has 10,000 serialized purchase orders (N = 10,000) and wants a sample of 50 orders (n = 50). The auditor randomly picks the 45th order first, and then selects every 200th order thereafter (245, 445, 645...). What sampling technique is used?", opts: ["A. Systematic Random Sampling", "B. Quota Sampling", "C. Simple Random Sampling", "D. Judgment Sampling"], ans: 0, exp: "การสุ่มตัวแรกแล้วเลือกตัวอย่างถัดไปตามช่วงห่างคงที่ k = N/n (10,000/50 = 200) คือ Systematic Random Sampling"},
+        {q: "39. [EGIT503] According to the Central Limit Theorem (CLT), what is the minimum sample size (n) generally required for the sampling distribution of the sample mean to approximate a normal distribution?", opts: ["A. n ≥ 5", "B. n ≥ 15", "C. n ≥ 30", "D. n ≥ 1,000"], ans: 2, exp: "Central Limit Theorem ระบุว่าเมื่อขนาดกลุ่มตัวอย่างมีขนาดใหญ่เพียงพอ (n ≥ 30) การแจกแจงของค่าเฉลี่ยตัวอย่างจะเข้าใกล้การแจกแจงแบบปกติ (Normal Distribution)"},
+        {q: "40. [EGIT503] Using Yamane's formula n = N / (1 + N*e²), what is the required sample size for a population of N = 10,000 with a precision/error level of e = 0.05?", opts: ["A. 200", "B. 385", "C. 500", "D. 1,000"], ans: 1, exp: "แทนค่าสูตร Yamane: n = 10,000 / (1 + 10,000 * (0.05)²) = 10,000 / (1 + 25) = 10,000 / 26 = 384.61 ปัดขึ้นเป็น 385 คน"},
+        {q: "41. [EGIT503] A researcher wants to estimate average monthly bread expenditure with 90% confidence (Z = 1.645), tolerable error E = $1.00, and standard deviation σ = $4.00. Using n = (Z*σ / E)², what is the approximate sample size?", opts: ["A. 16", "B. 44 (43.3)", "C. 100", "D. 385"], ans: 1, exp: "คำนวณจาก n = (1.645 * 4.00 / 1.00)² = (6.58)² = 43.296 ปัดขึ้นเป็น 44 ครัวเรือน"},
+        {q: "42. [EGIT503] Which scale of measurement has a fixed, true zero point and allows comparison of ratios (e.g., age, income, weight)?", opts: ["A. Nominal scale", "B. Ordinal scale", "C. Interval scale", "D. Ratio scale"], ans: 3, exp: "Ratio scale มีจุดศูนย์แท้ (Fixed zero point) และสามารถเปรียบเทียบสัดส่วนได้ เช่น น้ำหนัก อายุ รายได้ ยอดขาย"},
+        {q: "43. [EGIT503] Which non-comparative scaling technique uses a 7-point scale bounded at each end by bipolar adjectives (e.g., Powerful — Weak, Reliable — Unreliable)?", opts: ["A. Likert Scale", "B. Semantic Differential Scale", "C. Stapel Scale", "D. Paired Comparison"], ans: 1, exp: "Semantic Differential Scale คือมาตราวัด 7 ระดับที่มีคำคุณศัพท์ขั้วตรงข้ามกัน (Bipolar labels) อยู่ที่ปลายทั้งสองด้าน"},
+        {q: "44. [EGIT503] What are the three main chapters included in a Mahidol University (MU) Thesis Proposal?", opts: ["A. Chapter 1 Introduction, Chapter 2 Literature Review, and Chapter 3 Methodology and Plan", "B. Chapter 1 Abstract, Chapter 2 Results, and Chapter 3 Discussion", "C. Chapter 1 Budget, Chapter 2 CV, and Chapter 3 Appendix", "D. Chapter 1 Ethics, Chapter 2 Survey, and Chapter 3 Conclusion"], ans: 0, exp: "โครงสร้าง MU Thesis Proposal ประกอบด้วย Title, Abstract, บทที่ 1 Introduction, บทที่ 2 Literature Review, และบทที่ 3 Methodology and Plan"},
+        {q: "45. [EGIT503] Which of the following should NOT be included in a standard research Abstract?", opts: ["A. The main objective and proposed idea", "B. A brief summary of the methodology and key findings", "C. Figures, tables, complex equations, and general reference citations", "D. The primary conclusion of the study"], ans: 2, exp: "ใน Abstract ห้ามใส่รูปภาพ ตาราง สมการ และรายการอ้างอิงทั่วไป และควรมีความยาว 150–300 คำ ใน 1 ย่อหน้าเดี่ยว"},
+        {q: "46. [EGIT503] What is the difference between a 'Descriptive Abstract' and an 'Informative Abstract'?", opts: ["A. Descriptive abstracts are written before a project is completed (focusing on problems and methods), whereas Informative abstracts are written after completion (including results and conclusions).", "B. Descriptive abstracts are 5 pages long.", "C. Informative abstracts do not include results.", "D. Descriptive abstracts are only used in medical journals."], ans: 0, exp: "Descriptive Abstract เขียนก่อนโครงการเสร็จสมบูรณ์ (เน้นปัญหาและวิธีการ) ส่วน Informative Abstract เขียนหลังทำวิจัยเสร็จสมบูรณ์ (รวมผลลัพธ์และบทสรุป)"},
+        {q: "47. [EGIT503] Before submitting an IRB application to MU-CIRB, what mandatory online training program must Mahidol researchers register for and pass?", opts: ["A. Coursera Data Science", "B. CITI Program (Collaborative Institutional Training Initiative)", "C. Turnitin Certification", "D. Gartner Academy"], ans: 1, exp: "ขั้นตอนแรกของการขอ MU-CIRB คือการลงทะเบียนอบรมและสอบออนไลน์ในระบบ CITI Program เพื่อนำใบประกาศนียบัตรมายื่นประกอบ"},
+        {q: "48. [EGIT503] If a master's student conducts an anonymous online questionnaire with minimal/very low risk to adult participants, which type of IRB review category does it typically qualify for?", opts: ["A. Full Board Review (พิจารณาเต็มองค์ประชุม)", "B. Exemption Review (ยกเว้นการกำกับดูแล)", "C. Clinical Trial Review", "D. Animal Ethics Review"], ans: 1, exp: "งานวิจัยที่มีความเสี่ยงต่ำมาก เช่น แบบสอบถามหรือสัมภาษณ์ที่ไม่ระบุตัวตน จะเข้าข่ายการพิจารณาแบบ Exemption Review"},
+        {q: "49. [EGIT503] In the Abstract analysis of 'Machine Learning for STEM Skills in HRM' (Example 3), which two ML models were found to be the top-performing models?", opts: ["A. Linear Regression and Naive Bayes", "B. K-Nearest Neighbors (KNN) and Random Forests", "C. K-Means and Apriori", "D. ARIMA and LSTM"], ans: 1, exp: "ในบทคัดย่อตัวอย่างที่ 3 ระบุชัดเจนว่า K-Nearest Neighbors และ Random Forests เป็นโมเดลที่ให้ผลลัพธ์แม่นยำและค่า ROC ดีที่สุด"},
+        {q: "50. [EGIT503] In the Abstract analysis of 'Predicting and Managing EV Charging Demand' (Example 4), up to what percentage of EV consumer penetration can the alternative Time-of-Use (TOU) price strategy accommodate?", opts: ["A. 5%", "B. 10%", "C. 20%", "D. 30%"], ans: 3, exp: "ในบทคัดย่อตัวอย่างที่ 4 ระบุว่ากลยุทธ์ TOU ปัจจุบันรองรับการเติบโตของผู้ใช้ EV ได้ 20% ส่วนกลยุทธ์ TOU ทางเลือกใหม่รองรับได้สูงถึง 30%"}
+      ],
+      "515": [
+        {q: "1. [EGIT515] What major paradigm shift defines ITIL Version 5 compared to earlier versions?", opts: ["A. Focusing exclusively on hardware maintenance", "B. Expanding from traditional ITSM to an integrated framework for Digital Product and Service Management (DPSM) in an AI-driven world", "C. Replacing all 34 management practices with 5 coding rules", "D. Eliminating service consumers from the value system"], ans: 1, exp: "ITIL 5 ขยายขอบเขตจาก ITSM แบบเดิมไปสู่ Digital Product and Service Management (DPSM) อย่างครบวงจรในยุคที่ขับเคลื่อนด้วย AI"},
+        {q: "2. [EGIT515] In the shift from Industry 4.0 to Industry 5.0, how has the organizational focus evolved?", opts: ["A. From Cross-functional Collaboration to Silos & Specialization", "B. From Managing IT Systems & Outputs to Managing Digital Products/Services, Value, Outcomes, Experience, and balancing Profit, People & Planet", "C. From Sustainability to Prioritizing Profit only", "D. From Resilience to pure human automation"], ans: 1, exp: "Industry 5.0 เปลี่ยนจากการเน้นจัดการระบบ IT, Output และกำไรสูงสุด ไปสู่การเน้น Value, Outcomes, Experience และความสมดุลระหว่าง Profit, People, and Planet"},
+        {q: "3. [EGIT515] Which NEW key organizational role was added in ITIL 5 alongside Service Provider and Service Consumer?", opts: ["A. Database Administrator", "B. Digital Product Vendor", "C. Network Auditor", "D. External Regulator"], ans: 1, exp: "ใน ITIL 5 ได้เพิ่มบทบาทที่ 3 ขององค์กรในความสัมพันธ์การให้บริการ คือ Digital Product Vendor"},
+        {q: "4. [EGIT515] Which NEW characteristic was added to Service Quality in ITIL 5 alongside Utility, Warranty, and Experience?", opts: ["A. Profitability", "B. Sustainability", "C. Complexity", "D. Bureaucracy"], ans: 1, exp: "ITIL 5 เพิ่ม Sustainability (ความยั่งยืน) เข้ามาเป็นเสาหลักที่ 4 ของคุณภาพบริการ: Service Value = Utility + Warranty + Sustainability + Experience"},
+        {q: "5. [EGIT515] In ITIL 5, what new model was added directly into the 'Information and Technology' dimension of the Four Dimensions?", opts: ["A. ITIL AI Capability Model", "B. Waterfall Accounting Model", "C. Hardware Depreciation Model", "D. ISO 9000 Manufacturing Model"], ans: 0, exp: "ในมิติ Information and Technology ของ ITIL 5 ได้เพิ่ม ITIL AI Capability Model เข้ามาโดยตรง"},
+        {q: "6. [EGIT515] How are the 34 ITIL Management Practices grouped in ITIL Version 5?", opts: ["A. Into 2 groups: General Management Practices (12) and Product and Service Management Practices (22)", "B. Into 4 groups of 8 practices", "C. Into Hardware Practices and Software Practices", "D. Into Internal and External Practices"], ans: 0, exp: "ใน ITIL 5 จัดกลุ่ม 34 Practices ใหม่เป็น 2 กลุ่ม คือ General Management Practices (12 ตัว) และ Product and Service Management Practices (22 ตัว)"},
+        {q: "7. [EGIT515] What are the 8 activities of the ITIL 5 Product and Service Lifecycle (which also serve as the Value Chain activities)?", opts: ["A. Plan, Improve, Engage, Design, Obtain, Support", "B. Discover, Design, Acquire, Build, Transition, Operate, Deliver, Support", "C. Initiate, Plan, Execute, Monitor, Close", "D. Code, Test, Deploy, Monitor"], ans: 1, exp: "8 กิจกรรมของ ITIL 5 Product and Service Lifecycle และ Value Chain คือ Discover, Design, Acquire, Build, Transition, Operate, Deliver, Support"},
+        {q: "8. [EGIT515] In ITIL 5, what is the definition of a 'Digital Product'?", opts: ["A. Tangible goods transferred with ownership rights", "B. A combination of an organization's resources based on digital technology and designed to offer value to consumers", "C. A formal contract signed between two legal entities", "D. Actions performed by a service desk agent"], ans: 1, exp: "Digital Product คือการผสมผสานทรัพยากรขององค์กรที่ใช้เทคโนโลยีดิจิทัลเป็นฐานและออกแบบมาเพื่อมอบคุณค่าให้แก่ผู้บริโภค"},
+        {q: "9. [EGIT515] What is the correct relationship in the 'Digital DNA Pipeline'?", opts: ["A. Digital Services compose Technology Resources", "B. Technology resources compose Digital products -> Digital products enable and support Service offerings -> Service offerings describe Digital services", "C. Service offerings compose Hardware", "D. Digital products describe SLAs"], ans: 1, exp: "ลำดับที่ถูกต้องคือ Technology resources (compose) -> Digital products (enable & support) -> Service offerings (describe) -> Digital services"},
+        {q: "10. [EGIT515] Why is an autonomous (driverless) car considered a 'Digital Product' at ITIL Car Rental even though it is a physical vehicle made of metal and plastic?", opts: ["A. Because it is sold online", "B. Because digital technology is critical to how it operates—it simply cannot function without software and digital systems, just like a smartphone or laptop", "C. Because all physical goods are digital products", "D. Because customers pay with credit cards"], ans: 1, exp: "Alex อธิบายในเคส ITIL Car Rental ว่ารถไร้คนขับถือเป็น Digital Product เพราะเทคโนโลยีดิจิทัลเป็นหัวใจสำคัญที่ทำให้รถทำงานได้ โดย Digital Product สามารถรวมฮาร์ดแวร์ได้"},
+        {q: "11. [EGIT515] What are the three components that a 'Service Offering' may include?", opts: ["A. Utility, Warranty, and Sustainability", "B. Sponsor, Customer, and User", "C. Transfer of goods, Access to resources, and Service actions", "D. Inputs, Processes, and Outputs"], ans: 2, exp: "Service Offering ประกอบด้วย 3 ส่วนผสมหลัก คือ Transfer of goods, Access to resources, และ Service actions"},
+        {q: "12. [EGIT515] When a customer rents a car or uses a cloud application where the provider retains ownership of the vehicle/server, which component of a service offering is this?", opts: ["A. Transfer of goods", "B. Access to resources", "C. Service actions", "D. Ownership transfer"], ans: 1, exp: "การที่ผู้รับบริการได้สิทธิ์เข้าใช้งานทรัพยากรโดยที่ผู้ให้บริการยังคงเป็นเจ้าของกรรมสิทธิ์ (เช่น ห้องพักโรงแรม รถเช่า ระบบคลาวด์) เรียกว่า Access to resources"},
+        {q: "13. [EGIT515] How does an 'Outcome' differ from an 'Output'?", opts: ["A. An Output is 'The Why', while an Outcome is 'The What'.", "B. An Output is a tangible or intangible deliverable of an activity (The What), whereas an Outcome is a result for a stakeholder enabled by one or more outputs (The Why).", "C. Outputs are only financial, while outcomes are technical.", "D. There is no difference between output and outcome."], ans: 1, exp: "Output คือผลผลิตหรือสิ่งส่งมอบจากกิจกรรม (เช่น รถพาลูกค้าถึงที่หมาย) ส่วน Outcome คือผลลัพธ์ที่ผู้มีส่วนได้ส่วนเสียได้รับ (เช่น ความสะดวกสบาย มลพิษในเมืองลดลง)"},
+        {q: "14. [EGIT515] According to the ITIL Value Equation, when is a service perceived as valuable by a consumer?", opts: ["A. When the service provider minimizes its internal staff count", "B. When the positive effects (Positive outcomes + Costs removed + Risks removed) outweigh the negative effects (Negative outcomes + Costs introduced + Risks introduced)", "C. When the service has zero cost of consumption", "D. When the service uses the newest AI model regardless of results"], ans: 1, exp: "บริการจะถูกรับรู้ว่ามีคุณค่าก็ต่อเมื่อผลด้านบวก (Outcomes ที่ดี + ต้นทุนที่ลดลง + ความเสี่ยงที่ลดลง) มีมากกว่าผลด้านลบ (Outcomes เชิงลบ + ต้นทุนที่เพิ่มขึ้น + ความเสี่ยงใหม่ที่เกิดขึ้น)"},
+        {q: "15. [EGIT515] In the ITIL Car Rental driverless car case, what is an example of a 'Risk Removed' vs. a 'Risk Imposed' for the consumer?", opts: ["A. Risk Removed: Cybersecurity incident; Risk Imposed: Road safety", "B. Risk Removed: Delegating road safety/accident responsibility to the provider; Risk Imposed: Potential software error or cybersecurity incident", "C. Risk Removed: Rental fee; Risk Imposed: Buying a car", "D. Both are financial costs, not risks"], ans: 1, exp: "ความเสี่ยงที่ถูกยกออกไป (Risk Removed) คือลูกค้าโอนความเสี่ยงเรื่องความปลอดภัยบนท้องถนนให้ผู้ให้บริการรับผิดชอบแทน ส่วนความเสี่ยงใหม่ที่เพิ่มเข้ามา (Risk Imposed) คือความเสี่ยงจากซอฟต์แวร์ขัดข้องหรือถูกโจมตีทางไซเบอร์"},
+        {q: "16. [EGIT515] Within a service relationship, which organization is responsible for the creation and continual improvement of digital products and related service offerings?", opts: ["A. Service Consumer", "B. Digital Product Vendor", "C. Governing Regulator", "D. End User"], ans: 1, exp: "Digital Product Vendor คือองค์กรที่รับผิดชอบการสร้างและปรับปรุงพัฒนาผลิตภัณฑ์ดิจิทัลอย่างต่อเนื่อง"},
+        {q: "17. [EGIT515] Among the three Service Consumer roles, which role defines the requirements for a service and takes responsibility for the outcomes of service consumption?", opts: ["A. Sponsor", "B. Customer", "C. User", "D. Supplier"], ans: 1, exp: "Customer คือผู้กำหนดความต้องการ (Requirements) และรับผิดชอบต่อผลลัพธ์ (Outcomes) ของการใช้บริการ (ส่วน Sponsor คือผู้อนุมัติงบ และ User คือผู้ใช้งานจริง)"},
+        {q: "18. [EGIT515] In a B2B corporate mobile phone contract where the CFO approves the budget, the CIO negotiates the contract and requirements, and employees use the phones, what role does the CFO play?", opts: ["A. User only", "B. Sponsor", "C. Digital Product Vendor", "D. Service Provider"], ans: 1, exp: "CFO ทำหน้าที่อนุมัติงบประมาณ จึงสวมบทบาทเป็น Sponsor"},
+        {q: "19. [EGIT515] Which type of service relationship focuses on 'Innovation and growth', involves operational, tactical, and strategic levels, and uses bespoke/custom services?", opts: ["A. Basic relationship", "B. Cooperative relationship", "C. Collaborative relationship (Partnership)", "D. Commodity relationship"], ans: 2, exp: "Collaborative relationship (Partnership) มุ่งเน้นนวัตกรรมและการเติบโต (Innovation and growth) เชื่อมโยงครบทุกระดับจนถึงระดับกลยุทธ์ และมี Band of visibility กว้างที่สุด"},
+        {q: "20. [EGIT515] At ITIL Car Rental, the company coordinates daily cleaning schedules closely with its cleaning provider, uses standard subscription contracts with charging networks, and co-designs app features with its autonomous vehicle manufacturer. Which relationship type matches the cleaning provider?", opts: ["A. Basic relationship", "B. Cooperative relationship", "C. Collaborative relationship", "D. Adversarial relationship"], ans: 1, exp: "ในเคสระบุชัดเจนว่าความสัมพันธ์กับบริษัททำความสะอาดคือ Cooperative relationship (ประสานตารางเวลาร่วมกัน) ส่วนสถานีชาร์จไฟคือ Basic และผู้ผลิตรถไร้คนขับคือ Collaborative"},
+        {q: "21. [EGIT515] What is the difference between the 'Service Journey' and the 'Band of Visibility'?", opts: ["A. The Service Journey focuses on what happens over time (all activities and interactions), while the Band of Visibility focuses on what is seen between provider and consumer.", "B. The Band of Visibility is wider in a Basic relationship than in a Partnership.", "C. The Service Journey only includes billing.", "D. They are unrelated concepts."], ans: 0, exp: "Service Journey โฟกัสที่กิจกรรมและปฏิสัมพันธ์ที่เกิดขึ้นตามลำดับเวลา (Explore, Engage, Offer, Agree, Onboard, Co-create, Reflect) ส่วน Band of Visibility โฟกัสสิ่งที่แต่ละฝ่ายมองเห็นกันและกัน"},
+        {q: "22. [EGIT515] Which service level metric category is summarized as 'what the service does' to determine if a service is 'fit for purpose' (by supporting performance OR removing constraints)?", opts: ["A. Warranty", "B. Utility", "C. Sustainability", "D. User Experience (UX)"], ans: 1, exp: "Utility คือฟังก์ชันการทำงาน ('What the service does' / Fit for purpose) โดยต้องช่วยเพิ่มประสิทธิภาพ หรือ ขจัดข้อจำกัด (OR gate)"},
+        {q: "23. [EGIT515] Which service level metric category is summarized as 'how the service performs' ('fit for use') and covers Availability, Capacity, Continuity, and Security?", opts: ["A. Utility", "B. Warranty", "C. Sustainability", "D. Customer Experience (CX)"], ans: 1, exp: "Warranty คือการรับประกันว่าบริการจะทำงานได้ดีเพียงใด ('How the service performs' / Fit for use) ครอบคลุม Availability, Capacity, Continuity, และ Security (AND gate)"},
+        {q: "24. [EGIT515] How does 'Customer Experience (CX)' differ from 'User Experience (UX)' in ITIL 5?", opts: ["A. CX is perceived by the service customer across the entire service journey with the provider's management system, while UX is perceived by the service user specifically when interacting with the digital product during consumption.", "B. UX is only about pricing, while CX is only about screen colors.", "C. CX applies only to internal IT staff.", "D. UX and CX are identical."], ans: 0, exp: "CX คือประสบการณ์ที่รับรู้โดย Customer ตลอดเส้นทาง Service Journey กับระบบการจัดการของผู้ให้บริการ ส่วน UX คือประสบการณ์ของ User ขณะใช้งานผลิตภัณฑ์ดิจิทัล"},
+        {q: "25. [EGIT515] What are the key inputs and the key outcome of the ITIL Value System (ITIL VS)?", opts: ["A. Inputs: Money and Hardware; Outcome: Software", "B. Inputs: Opportunity and Demand; Outcome: Value", "C. Inputs: Incidents and Problems; Outcome: SLA", "D. Inputs: Policies; Outcome: Audits"], ans: 1, exp: "Inputs ของ ITIL Value System คือ Opportunity (โอกาส) และ Demand (ความต้องการ) ส่วน Outcome คือ Value (คุณค่า)"},
+        {q: "26. [EGIT515] Which set correctly lists all FIVE core components of the ITIL Value System (ITIL VS)?", opts: ["A. Discover, Design, Build, Operate, Support", "B. Guiding principles, Governance, Value chain, Management practices, and Continual improvement", "C. Utility, Warranty, Sustainability, Experience, and SLA", "D. People, Information, Partners, and Processes"], ans: 1, exp: "องค์ประกอบหลัก 5 ส่วนของ ITIL VS ได้แก่ 1. Guiding principles, 2. Governance, 3. Value chain, 4. Management practices, และ 5. Continual improvement"},
+        {q: "27. [EGIT515] In Module 4 (Governance), what are the FOUR key activities through which digital technology governance is realized in ITIL 5?", opts: ["A. Plan, Do, Check, Act", "B. Engage stakeholders, Evaluate, Direct, and Monitor", "C. Discover, Design, Build, and Deliver", "D. Audit, Punish, Report, and Close"], ans: 1, exp: "ใน ITIL 5 กิจกรรมของ Governance ประกอบด้วย 4 กิจกรรม (สะท้อน ISO/IEC 38500:2024) คือ Engage stakeholders, Evaluate, Direct, และ Monitor"},
+        {q: "28. [EGIT515] Which Governance Pattern combines 'Centralized Authority' with 'Structured Assurance' (top-down control, strict compliance, permission required for any deviation, suitable for banks)?", opts: ["A. Directive", "B. Guided", "C. Federated", "D. Autonomous"], ans: 0, exp: "Directive pattern คือการรวมอำนาจไว้ที่ส่วนกลาง (Centralized) และควบคุมตามโครงสร้างกฎระเบียบอย่างเคร่งครัด (Structured)"},
+        {q: "29. [EGIT515] Which Governance Pattern combines 'Distributed Authority' with 'Structured Assurance' (multiple business units operating with delegated authority, coordinated via a documented decision rights matrix)?", opts: ["A. Directive", "B. Guided", "C. Federated", "D. Autonomous"], ans: 2, exp: "Federated pattern กระจายอำนาจให้แต่ละหน่วยธุรกิจ (Distributed Authority) แต่ยังมีโครงสร้างและกรอบกติกากลางร่วมกัน (Structured Assurance)"},
+        {q: "30. [EGIT515] In the 'Guided' governance pattern (Centralized Authority + Emergent Assurance), what is a typical signal of ineffectiveness?", opts: ["A. Initiative paralysis waiting for formal approval", "B. Different interpretations of leadership's intent causing divergence, or vision without execution", "C. Units optimizing locally at the expense of the enterprise", "D. Lack of any central vision"], ans: 1, exp: "จุดอ่อนที่พบบ่อยของแบบ Guided คือการตีความเจตนารมณ์ (Commander's intent) ไปคนละทิศทาง หรือมีแต่วิสัยทัศน์แต่ไม่เกิดการลงมือปฏิบัติจริง"},
+        {q: "31. [EGIT515] What defines an 'ITIL Guiding Principle'?", opts: ["A. A strict law that only applies to software developers", "B. Universal recommendations that can guide an organization in all circumstances, regardless of changes in its goals, strategies, type of work, or management structure", "C. A mandatory checklist that must be executed in sequential order from 1 to 7", "D. A financial audit standard"], ans: 1, exp: "Guiding Principles คือคำแนะนำสากลที่ช่วยชี้นำองค์กรได้ในทุกสถานการณ์ ไม่ว่าเป้าหมาย กลยุทธ์ หรือโครงสร้างการบริหารจะเปลี่ยนไปอย่างไร"},
+        {q: "32. [EGIT515] When ITIL Car Rental's executives debated investing in AI, the CEO asked: 'Where will AI make the greatest difference for our customers and staff?' instead of 'How can we showcase AI?'. Which Guiding Principle was applied?", opts: ["A. Start where you are", "B. Focus on value", "C. Keep it simple and practical", "D. Optimize and automate"], ans: 1, exp: "การตั้งคำถามว่า AI จะสร้างความแตกต่างและประโยชน์สูงสุดให้ลูกค้าและพนักงานที่จุดไหน คือการประยุกต์ใช้หลักการ Focus on value"},
+        {q: "33. [EGIT515] According to the 'Start where you are' Guiding Principle, what is the role of measurement?", opts: ["A. Measurement should completely replace direct observation.", "B. Measurement should be used to support, not replace, what is directly observed, because over-reliance on reports can introduce bias and distortion.", "C. Only automated AI metrics should be trusted.", "D. Existing services should be deleted before measuring."], ans: 1, exp: "หลักการ Start where you are เน้นว่าต้องใช้การวัดผลเพื่อสนับสนุนสิ่งที่สังเกตเห็นจริง (Support, not replace observation) และควรให้คนที่ไม่คุ้นเคยมาช่วยสังเกตเพื่อลดอคติ"},
+        {q: "34. [EGIT515] Under 'Progress iteratively with feedback', how are 'User calls for support, complaints, and social media conversations' classified in the feedback matrix?", opts: ["A. Solicited and Structured", "B. Solicited and Unstructured", "C. Unsolicited and Unstructured", "D. Unsolicited and Structured"], ans: 2, exp: "การที่ผู้ใช้โทรมาแจ้งปัญหา บ่น หรือโพสต์คุยกันบนโซเชียลมีเดียโดยที่องค์กรไม่ได้ส่งแบบสำรวจไปถามและไม่มีรูปแบบตายตัว จัดเป็น Unsolicited (ไม่ได้ร้องขอ) และ Unstructured (ไม่มีโครงสร้าง)"},
+        {q: "35. [EGIT515] Which statement is TRUE regarding the 'Collaborate and promote visibility' Guiding Principle?", opts: ["A. Collaboration means every stakeholder must reach 100% consensus before any action is taken.", "B. Collaboration does NOT mean consensus; rather, it involves engaging the right people and making work visible (e.g., via Kanban boards) to spot bottlenecks and avoid poor decisions.", "C. Visibility should be restricted to C-level executives only.", "D. Silos should be encouraged to protect team secrets."], ans: 1, exp: "ในสไลด์ระบุชัดเจนว่า 'Collaboration does not mean consensus' และการสร้างการมองเห็น (Visibility) ช่วยให้เห็นคอขวดและลดการเข้าใจผิดระหว่างทีม"},
+        {q: "36. [EGIT515] What is the core rule of the 'Keep it simple and practical' Guiding Principle?", opts: ["A. Design a separate rule for every possible rare exception.", "B. Minimize steps, use outcome-based thinking, and if a process, service, action, or metric fails to increase value or produce a useful outcome, eliminate it.", "C. Collect as much data as possible even if it is never used.", "D. Automate everything immediately without reviewing the steps."], ans: 1, exp: "หลักการ Keep it simple and practical เน้นลดขั้นตอนที่ซับซ้อน และหากขั้นตอนหรือตัวชี้วัดใดไม่สร้างคุณค่า ให้ตัดทิ้งทันที (Eliminate it)"},
+        {q: "37. [EGIT515] According to the 'Optimize and automate' Guiding Principle, what MUST be done BEFORE automating a process?", opts: ["A. Buy the most expensive generative AI tool", "B. Simplify and/or optimize the process first ('You cannot successfully automate what hasn't been simplified')", "C. Replace all human staff", "D. Remove all governance controls"], ans: 1, exp: "ต้องทำให้เรียบง่ายและปรับให้เหมาะสมที่สุดก่อนทำเป็นระบบอัตโนมัติเสมอ (Simplify and/or optimize before automating)"},
+        {q: "38. [EGIT515] In Module 6, which term describes 'what an organization does for its consumers and other stakeholders and why'?", opts: ["A. Value stream", "B. Operating model", "C. Organization's purpose", "D. Service catalogue"], ans: 2, exp: "Organization's purpose อธิบายว่าองค์กรทำอะไรเพื่อผู้บริโภคและผู้มีส่วนได้ส่วนเสีย และทำไปเพื่ออะไร (What & Why)"},
+        {q: "39. [EGIT515] Which Value Chain activity has the primary purpose of ensuring continual alignment of product roadmaps and related service offerings with consumer needs and organizational strategy (influenced by PESTLE factors)?", opts: ["A. Discover", "B. Design", "C. Acquire", "D. Transition"], ans: 0, exp: "กิจกรรม Discover มีวัตถุประสงค์เพื่อทำให้ Product roadmaps และ Service offerings สอดคล้องกับความต้องการของผู้บริโภคและกลยุทธ์องค์กรอย่างต่อเนื่อง"},
+        {q: "40. [EGIT515] During the 'Design' activity, what is the difference between a 'Product Specification' and a 'Product Prototype'?", opts: ["A. A Specification is an initial working model, while a Prototype is a legal contract.", "B. A Specification is a detailed document outlining requirements and features to be built, whereas a Prototype is an initial version/mockup used to test design and hypotheses.", "C. Prototypes are only created after the 'Operate' activity.", "D. Specifications are only used for hardware."], ans: 1, exp: "Specification คือเอกสารระบุข้อกำหนดและคุณลักษณะอย่างละเอียด ส่วน Prototype คือรุ่นต้นแบบที่ใช้ทดสอบแนวคิดการออกแบบและสมมติฐาน"},
+        {q: "41. [EGIT515] Which database is used in the 'Acquire' (and other lifecycle) activities to store configuration records throughout their lifecycle and maintain the relationships between them?", opts: ["A. Configuration Management Database (CMDB)", "B. Financial Ledger", "C. Marketing CRM", "D. Turnitin Database"], ans: 0, exp: "CMDB (Configuration Management Database) ใช้จัดเก็บระเบียนการตั้งค่า (Configuration records) และความสัมพันธ์ระหว่างอุปกรณ์/ระบบตลอดวงจรชีวิต"},
+        {q: "42. [EGIT515] In the 'Build' activity, what is 'Continuous Integration (CI)'?", opts: ["A. A method where developers regularly merge their code changes into a central repository, after which automated builds and tests are run.", "B. Negotiating contracts with external suppliers.", "C. Training customer support agents.", "D. Writing a business case."], ans: 0, exp: "Continuous Integration (CI) คือวิธีการทางวิศวกรรมซอฟต์แวร์ที่นักพัฒนารวมโค้ดเข้าสู่คลังกลางอย่างสม่ำเสมอ แล้วรันการ Build และ Test อัตโนมัติเพื่อตรวจจับข้อผิดพลาดตั้งแต่เนิ่นๆ"},
+        {q: "43. [EGIT515] In the 'Transition' activity, what is the difference between 'Continuous Delivery' and 'Continuous Deployment'?", opts: ["A. Continuous Delivery releases software to production automatically without human intervention, while Continuous Deployment requires manual approval.", "B. In Continuous Delivery, software can be released to production at any time but deployment decisions are taken case by case; in Continuous Deployment, changes automatically go through the pipeline into the live environment.", "C. Continuous Deployment only applies to physical goods.", "D. They mean the exact same thing."], ans: 1, exp: "Continuous Delivery คือโค้ดพร้อมปล่อยขึ้น Production ได้ตลอดเวลาแต่ตัดสินใจกดปล่อยเป็นรายกรณี ส่วน Continuous Deployment คือการปล่อยขึ้น Production โดยอัตโนมัติทันทีที่ผ่าน Pipeline"},
+        {q: "44. [EGIT515] In the 'Operate' activity, which discipline incorporates aspects of software engineering and applies them to infrastructure and operations problems to create scalable and highly reliable software systems?", opts: ["A. Site Reliability Engineering (SRE)", "B. Human-Centred Design (HCD)", "C. Business Analysis", "D. Procurement Management"], ans: 0, exp: "SRE (Site Reliability Engineering) คือการนำหลักวิศวกรรมซอฟต์แวร์มาประยุกต์ใช้กับงานโครงสร้างพื้นฐานและปฏิบัติการเพื่อสร้างระบบที่เสถียรและขยายขนาดได้"},
+        {q: "45. [EGIT515] What is 'Observability' in the 'Operate' activity?", opts: ["A. Watching employees work in the office", "B. The ability to understand the internal state of a complicated system by analysing its external outputs, such as metrics, logs, and traces", "C. Conducting a customer satisfaction survey", "D. Reviewing supplier invoices"], ans: 1, exp: "Observability คือความสามารถในการเข้าใจสถานะภายในของระบบที่ซับซ้อนโดยวิเคราะห์จากผลลัพธ์ภายนอก เช่น Metrics, Logs, และ Traces"},
+        {q: "46. [EGIT515] In the 'Deliver' activity, what is a 'Service Request'?", opts: ["A. An unplanned interruption to a service", "B. A request from a user (or authorized representative) that initiates a service action which has been agreed as a normal part of service delivery", "C. A catastrophic disaster event", "D. A root cause of multiple incidents"], ans: 1, exp: "Service Request คือคำร้องขอจากผู้ใช้เพื่อเริ่มต้นการกระทำบริการ (Service action) ที่ได้ตกลงไว้แล้วว่าเป็นส่วนปกติของการส่งมอบบริการ"},
+        {q: "47. [EGIT515] In the 'Support' activity, what is the difference between an 'Incident', a 'Problem', and a 'Known Error'?", opts: ["A. An Incident is an unplanned interruption/reduction in service quality; a Problem is a cause (or potential cause) of one or more incidents; a Known Error is a problem that has been analysed but has not been resolved.", "B. A Problem is a minor incident, and an Incident is a major disaster.", "C. A Known Error is an error that has already been permanently fixed.", "D. They are all synonyms for a service request."], ans: 0, exp: "Incident = บริการหยุดชะงักหรือคุณภาพลดลงโดยไม่ได้วางแผน, Problem = สาเหตุของ Incident, Known Error = ปัญหาที่วิเคราะห์หาสาเหตุแล้วแต่ยังไม่ได้แก้ไขถาวร"},
+        {q: "48. [EGIT515] In Module 7 (Value Streams), what is the difference between a 'Core Value Stream' and an 'Enabling Value Stream'?", opts: ["A. A Core Value Stream enables value for external consumers as intended by the operating model, while an Enabling Value Stream enables value for internal customers to support the core value streams (e.g., payroll).", "B. Enabling Value Streams are more important than Core Value Streams.", "C. Core Value Streams do not use management practices.", "D. Enabling Value Streams are only performed by external vendors."], ans: 0, exp: "Core Value Stream มุ่งสร้างคุณค่าให้ผู้บริโภคหลักตาม Operating model ส่วน Enabling Value Stream มุ่งสร้างคุณค่าให้ลูกค้าภายในเพื่อสนับสนุน Core Value Stream"},
+        {q: "49. [EGIT515] What is the correct 5-step sequence of 'Value Stream Mapping'?", opts: ["A. 1. Map 'to-be' -> 2. Map 'as-is' -> 3. Identify -> 4. Automate -> 5. Close", "B. 1. Identify the value stream -> 2. Map the 'as-is' stream -> 3. Analyse the stream -> 4. Map the 'to-be' stream -> 5. Plan and implement improvements", "C. 1. Discover -> 2. Design -> 3. Build -> 4. Operate -> 5. Support", "D. 1. Engage -> 2. Evaluate -> 3. Direct -> 4. Monitor -> 5. Audit"], ans: 1, exp: "ขั้นตอน 5 ข้อของ Value Stream Mapping คือ 1. Identify -> 2. Map 'as-is' -> 3. Analyse (แยก Value-adding กับ Waste) -> 4. Map 'to-be' -> 5. Plan and implement improvements"},
+        {q: "50. [EGIT515] During Step 3 ('Analyse the stream') of Value Stream Mapping, what are the two main categories of activities that teams distinguish between?", opts: ["A. Hardware activities and Software activities", "B. Value-adding activities and Non-value-adding activities (waste)", "C. Internal activities and External activities", "D. Cheap activities and Expensive activities"], ans: 1, exp: "ในขั้นที่ 3 (Analyse the stream) ทีมจะวิเคราะห์แยกแยะระหว่างกิจกรรมที่เพิ่มคุณค่า (Value-adding activities) กับกิจกรรมที่ไม่เพิ่มคุณค่าหรือความสูญเปล่า (Non-value-adding activities / Waste)"}
+      ]
+    };
+
+    let currentCourse = "both"; // Default to showing BOTH courses clearly so user sees both immediately!
+    let currentTab = "notes";
+    let userScores = { "503": {}, "515": {} };
+
+    function switchCourse(courseId) {
+      currentCourse = courseId;
+
+      const c503 = document.getElementById("card-503");
+      const c515 = document.getElementById("card-515");
+      const cBoth = document.getElementById("card-both");
+
+      c503.className = "text-left p-4 rounded-2xl border-2 border-slate-700 bg-slate-800/90 hover:bg-slate-800 text-slate-200 transition-all flex items-start gap-3.5";
+      c515.className = "text-left p-4 rounded-2xl border-2 border-slate-700 bg-slate-800/90 hover:bg-slate-800 text-slate-200 transition-all flex items-start gap-3.5";
+      cBoth.className = "text-left p-4 rounded-2xl border-2 border-slate-700 bg-slate-800/90 hover:bg-slate-800 text-slate-200 transition-all flex items-start gap-3.5";
+
+      if (courseId === "503") {
+        c503.classList.add("course-card-active-503");
+        document.getElementById("headerCourseTitle").innerText = "📘 วิชาที่ 1: EGIT503 Research Methodology (ผศ.ดร.ยอด สุขะมงคล)";
+      } else if (courseId === "515") {
+        c515.classList.add("course-card-active-515");
+        document.getElementById("headerCourseTitle").innerText = "🟣 วิชาที่ 2: EGIT515 ITIL Version 5 Service Management (อ.มนัสศิริ จันทร์สุทธิรางกูร)";
+      } else {
+        cBoth.classList.add("course-card-active-both");
+        document.getElementById("headerCourseTitle").innerText = "📚 โหมดแสดงทั้ง 2 วิชาพร้อมกัน (EGIT503 Research Methodology + EGIT515 ITIL v5)";
+      }
+
+      document.getElementById("notes-503").classList.toggle("hidden", courseId === "515");
+      document.getElementById("notes-515").classList.toggle("hidden", courseId === "503");
+      document.getElementById("tools-503").classList.toggle("hidden", courseId === "515");
+      document.getElementById("tools-515").classList.toggle("hidden", courseId === "503");
+
+      renderQuiz();
+    }
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+      const tNotes = document.getElementById("tab-notes");
+      const tQuiz = document.getElementById("tab-quiz");
+      const tTools = document.getElementById("tab-tools");
+
+      const activeClass = "px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition bg-amber-400 text-slate-950 shadow";
+      const inactiveClass = "px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition bg-slate-800 text-slate-200 hover:bg-slate-700";
+
+      tNotes.className = tabId === "notes" ? activeClass : inactiveClass;
+      tQuiz.className = tabId === "quiz" ? activeClass : inactiveClass;
+      tTools.className = tabId === "tools" ? activeClass : inactiveClass;
+
+      document.getElementById("section-notes").classList.toggle("hidden", tabId !== "notes");
+      document.getElementById("section-quiz").classList.toggle("hidden", tabId !== "quiz");
+      document.getElementById("section-tools").classList.toggle("hidden", tabId !== "tools");
+
+      if (tabId === "quiz") renderQuiz();
+    }
+
+    function getActiveQuizList() {
+      if (currentCourse === "503") {
+        return quizzes["503"].map((item, idx) => ({ ...item, courseKey: "503", qIdx: idx }));
+      } else if (currentCourse === "515") {
+        return quizzes["515"].map((item, idx) => ({ ...item, courseKey: "515", qIdx: idx }));
+      } else {
+        return [
+          ...quizzes["503"].map((item, idx) => ({ ...item, courseKey: "503", qIdx: idx })),
+          ...quizzes["515"].map((item, idx) => ({ ...item, courseKey: "515", qIdx: idx }))
+        ];
+      }
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById("quizContainer");
+      const activeList = getActiveQuizList();
+
+      document.getElementById("quizTitle").innerText =
+        currentCourse === "503"
+          ? "📘 ข้อสอบจำลอง EGIT503 Research Methodology (50 ข้อ พร้อมเฉลยละเอียด)"
+          : currentCourse === "515"
+          ? "🟣 ข้อสอบจำลอง EGIT515 ITIL Version 5 Service Management (50 ข้อ พร้อมเฉลยละเอียด)"
+          : "📚 ข้อสอบจำลองรวมทั้ง 2 วิชา EGIT503 + EGIT515 (รวม 100 ข้อ พร้อมเฉลยละเอียด)";
+
+      let html = "";
+      let correctCount = 0;
+      let answeredCount = 0;
+
+      activeList.forEach((item) => {
+        const selected = userScores[item.courseKey][item.qIdx];
+        const isAnswered = selected !== undefined;
+        if (isAnswered) {
+          answeredCount++;
+          if (selected === item.ans) correctCount++;
+        }
+
+        const badgeColor = item.courseKey === "503" ? "bg-blue-100 text-blue-900" : "bg-purple-100 text-purple-900";
+        const courseName = item.courseKey === "503" ? "EGIT503 Research Methodology" : "EGIT515 ITIL v5";
+
+        html += `<div class="searchable bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold ${badgeColor}">${courseName}</span>
+          </div>
+          <div class="font-extrabold text-sm sm:text-base text-slate-900">${item.q}</div>
+          <div class="space-y-2">`;
+
+        item.opts.forEach((opt, oIdx) => {
+          let btnCls = "w-full text-left px-4 py-2.5 rounded-xl border text-xs sm:text-sm transition ";
+          if (isAnswered) {
+            if (oIdx === item.ans) {
+              btnCls += "bg-emerald-50 border-emerald-500 text-emerald-950 font-extrabold";
+            } else if (oIdx === selected) {
+              btnCls += "bg-rose-50 border-rose-500 text-rose-900 font-semibold";
+            } else {
+              btnCls += "bg-slate-50 border-slate-200 text-slate-500";
+            }
+          } else {
+            btnCls += "bg-slate-50 hover:bg-blue-50/50 border-slate-200 text-slate-800 font-medium";
+          }
+          html += `<button class="${btnCls}" onclick="selectAnswer('${item.courseKey}', ${item.qIdx}, ${oIdx})">${opt}</button>`;
+        });
+
+        html += `</div>`;
+        if (isAnswered) {
+          html += `<div class="p-3.5 rounded-xl bg-emerald-50/80 border-l-4 border-emerald-600 text-xs sm:text-sm text-slate-800">
+            <strong class="text-emerald-900 block mb-0.5">✅ เฉลย: ${item.opts[item.ans]}</strong>
+            <span>💡 <strong>เหตุผล:</strong> ${item.exp}</span>
+          </div>`;
+        }
+        html += `</div>`;
+      });
+
+      container.innerHTML = html;
+      document.getElementById("scoreBadge").innerText = `คะแนน: ${correctCount} / ${activeList.length} (ทำแล้ว ${answeredCount} ข้อ)`;
+    }
+
+    function selectAnswer(courseKey, qIdx, oIdx) {
+      userScores[courseKey][qIdx] = oIdx;
+      renderQuiz();
+    }
+
+    function showAllExplanations() {
+      const activeList = getActiveQuizList();
+      activeList.forEach((item) => {
+        if (userScores[item.courseKey][item.qIdx] === undefined) {
+          userScores[item.courseKey][item.qIdx] = item.ans;
+        }
+      });
+      renderQuiz();
+    }
+
+    function resetQuiz() {
+      if (currentCourse === "503") userScores["503"] = {};
+      else if (currentCourse === "515") userScores["515"] = {};
+      else userScores = { "503": {}, "515": {} };
+      renderQuiz();
+    }
+
+    function handleSearch(query) {
+      const q = query.trim().toLowerCase();
+      const items = document.querySelectorAll(".searchable");
+      items.forEach((el) => {
+        const txt = el.innerText.toLowerCase();
+        el.style.display = !q || txt.includes(q) ? "" : "none";
+      });
+    }
+
+    function clearSearch() {
+      const inp = document.getElementById("globalSearch");
+      inp.value = "";
+      handleSearch("");
+    }
+
+    function copyShareInfo() {
+      const dummy = document.createElement("textarea");
+      dummy.value = window.location.href;
+      document.body.appendChild(dummy);
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      const box = document.getElementById("toastBox");
+      document.getElementById("toastText").innerText = "✅ คัดลอกลิงก์หน้าเว็บเรียบร้อย! ส่งต่อให้เพื่อนใน LINE ได้เลย";
+      box.classList.remove("hidden");
+      setTimeout(() => box.classList.add("hidden"), 3500);
+    }
+
+    function calcYamane() {
+      const N = parseFloat(document.getElementById("yamane-N").value) || 0;
+      const e = parseFloat(document.getElementById("yamane-e").value) || 0.05;
+      const n = N / (1 + N * e * e);
+      document.getElementById("yamane-res").innerHTML = `ผลลัพธ์ n = ${n.toFixed(2)} &rarr; ปัดขึ้นเป็น ${Math.ceil(n)} คน`;
+    }
+
+    function calcCochran() {
+      const z = parseFloat(document.getElementById("cochran-z").value) || 1.96;
+      const p = parseFloat(document.getElementById("cochran-p").value) || 0.5;
+      const e = parseFloat(document.getElementById("cochran-e").value) || 0.05;
+      const N = parseFloat(document.getElementById("cochran-N").value) || 3000;
+      const n0 = (z * z * p * (1 - p)) / (e * e);
+      const n0Ceil = Math.ceil(n0);
+      const nAdj = n0Ceil / (1 + (n0Ceil - 1) / N);
+      document.getElementById("cochran-res").innerHTML = `ไม่ทราบ N (n₀): ${n0Ceil} คน (${n0.toFixed(1)})<br/>ปรับแก้ด้วย N=${N}: ${Math.ceil(nAdj)} คน (${nAdj.toFixed(1)})`;
+    }
+
+    function calcMeanSize() {
+      const z = parseFloat(document.getElementById("mean-z").value) || 1.645;
+      const sd = parseFloat(document.getElementById("mean-sd").value) || 4;
+      const E = parseFloat(document.getElementById("mean-E").value) || 1;
+      const n = Math.pow((z * sd) / E, 2);
+      document.getElementById("mean-res").innerHTML = `ผลลัพธ์ n = ${n.toFixed(2)} &rarr; ปัดขึ้นเป็น ${Math.ceil(n)} ตัวอย่าง`;
+    }
+
+    // Initialize calculators and default view showing BOTH courses
+    calcYamane();
+    calcCochran();
+    calcMeanSize();
+    switchCourse("both");
+  </script>
+</body>
+</html>
